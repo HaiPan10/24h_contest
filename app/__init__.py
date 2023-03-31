@@ -11,8 +11,8 @@ app = Flask(__name__)
 app.secret_key = 'ahdfpiwqeuiqudasdasdncblzbvjlhajz,nfm,sandkqwpuep'
 
 # Cau hinh database trong day
-app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+pymysql://sql6582479:REVLUdhU9S@sql6.freemysqlhosting.net' \
-                                        '/sql6582479?charset=utf8mb4'
+app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+pymysql://sql12610119:nxBW8kc792@sql12.freemysqlhosting.net' \
+                                        '/sql12610119?charset=utf8mb4'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = True
 cloudinary.config(
     cloud_name='dxjkpbzmo',
