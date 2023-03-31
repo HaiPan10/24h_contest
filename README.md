@@ -1,2 +1,2 @@
-# nukeviet
-The 24h contest using Nukeviet open source
+# 24h contest
+The 24h contest using Python Flask framework
