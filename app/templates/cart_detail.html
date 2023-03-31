@@ -1,0 +1,95 @@
+{% extends 'layout/base.html' %}
+
+{% block content %}
+<!--================Home Banner Area =================-->
+<!-- breadcrumb start-->
+<section class="breadcrumb breadcrumb_cart">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-lg-8">
+                <div class="breadcrumb_iner">
+                    <div class="breadcrumb_iner_item">
+                        <h2>Giỏ hàng</h2>
+                        <p>Trang chủ <span>-</span>Xem giỏ hàng</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- breadcrumb start-->
+
+<!--================Cart Area =================-->
+<section class="cart_area padding_top padding_bottom" id="scroll_this">
+    <div class="container">
+        <div class="cart_inner">
+            <div class="table-responsive">
+                {% if 'cart' in session and session['cart'] %}
+                <table class="table">
+                    <thead>
+                    <tr style="text-align: center">
+                        <th scope="col" style="width: 10%">Hình minh họa</th>
+                        <th scope="col">Tên sản phẩm</th>
+                        <th scope="col">Giá</th>
+                        <th scope="col">Số lượng</th>
+                        <th scope="col">Thành tiền</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% for c in session['cart'].values() %}
+                    <tr id="cart{{c.id}}">
+                        <td>
+                          <div class="media">
+                                <div class="d-flex" style="padding-right: 0px;">
+                                    <img src="{{ c.image }}" alt=""/>
+                                </div>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="media">
+                                <div class="media-body">
+                                    <p>{{ c.book_name }}</p>
+                                </div>
+                            </div>
+                        </td>
+                        <td>
+                            <h5 style="text-align: center">{{ "{:,.0f}".format(c.unit_price) }} VNĐ</h5>
+                        </td>
+                        <td >
+                            <div class="product_count width_max-res">
+                                <input onchange="updateCart({{c.id}}, this, {{c.unit_price}})" class="input-number pop-up_click"
+                                        type="number" value="{{c.quantity}}" min="1" max="{{c.quantity_in_stocks}}">
+                            </div>
+                        </td>
+                        <td>
+                            <h5 id="cart{{c.id}}-amount" style="text-align: center">{{ "{:,.0f}".format(c.unit_price * c.quantity) }} VNĐ</h5>
+                        </td>
+                        <td>
+                            <input type="button" value="Xóa" onclick="deleteCart({{c.id}})" class="btn btn-danger width_max-res pop-up_click"/>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+                <div class="subtotal">
+                    <h5>Tổng cộng: <span class="cart-amount" id="total-amount">{{"{:,.0f}".format(cart.total_amount)}} VNĐ</span></h5>
+                </div>
+
+                <div class="checkout_btn_inner float-right">
+                    <a class="btn_1" href="/products">Xem cửa hàng</a>
+                    <a class="btn_1 checkout_btn_1" href="/checkout">Thanh toán</a>
+                </div>
+                {% else %}
+                <div>
+                    <div class="empty-page">Giỏ hàng trống</div>
+                    <div class="checkout_btn_inner float-right">
+                        <a class="btn_1" href="/products">Xem cửa hàng</a>
+                    </div>
+                </div>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</section>
+<!--================End Cart Area =================-->
+{% endblock %}
