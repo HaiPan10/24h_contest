@@ -1,65 +1,80 @@
-{% extends 'layout/base.html' %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/login.css">
+    <title>HCMCOU - SSO - Trường Đại học Mở Tp.HCM</title>
+    <link rel="icon" href="https://id.ou.edu.vn/favicon.ico" type="image/x-icon">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
 
-{% block content %}
-<!-- breadcrumb start-->
-    <section class="breadcrumb breadcrumb_bg_login">
-        <div class="container">
-            <div class="row justify-content-center">
-                <div class="col-lg-8">
-                    <div class="breadcrumb_iner">
-                        <div class="breadcrumb_iner_item">
-                            <h2>Đăng nhập</h2>
-                            <p>Chức năng <span>-</span> Đăng nhập</p>
-                        </div>
+</head>
+<body>
+    <div class="modal-login d-flex justify-content-center align-items-center my-5">
+        <div class="modal_overlay"></div>
+
+        <div class="modal_body">
+            <div class="auth-form">
+                <div class="auth-form-img">
+                    <img class="img-auth-form" src="images/logoOU.png" alt="">
+                </div>
+
+                <div class="auth-form-header">
+                    <p1 class="auth-form-heading" >ĐĂNG NHẬP</p1>
+                </div>
+
+                <div class="dropdown">
+                    <button class="btn btn-secondary dropdown-toggle text-dark bg-white form-control text-start" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                      Sinh viên(Hệ chính quy)
+                    </button>
+                    <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                      <li><a class="dropdown-item" href="#">Sinh viên(Đào tạo từ xa và vừa làm vừa học-Đào tạo trực tuyến)</a></li>
+                      <li><a class="dropdown-item" href="#">Học viên sau đại học</a></li>
+                      <li><a class="dropdown-item" href="#">Cán bộ-Nhân viên/ Giảng viên</a></li>
+                    </ul>
+                  </div>
+
+                <div class="auth-form-form">
+                    <div class="container">
+                        <form action="/action_page.php" class="was-validated">
+                          <div class="form-group">
+                            <input type="text" class="form-control" id="uname" placeholder="Tên đăng nhập" name="uname" required>
+                          </div>
+
+                          <div class="form-group">
+                            <input type="password" class="form-control" id="pwd" placeholder="Mật khẩu" name="pswd" required>
+
+                          </div>
+
+                          <div class="d-grid gap-2">
+                            <button class="btn btn-primary text-dark" type="button">Đăng nhập</button>
+                          </div>
+                        </form>
+                      </div>
+                </div>
+
+                <div class="support">
+                    <h1>Trường hợp quên mật khẩu:</h1>
+                    <p>- Sinh viên Hệ chính qui: Mang theo thẻ sinh viên liên hệ trực tiếp phòng 101 (Trung tâm Quản lý Hệ thống thông tin) tại 35-37 Hồ Hảo Hớn, Phường Cô Giang, Q1, Tp.HCM (Không hỗ trợ cấp lại mật khẩu qua điện thoại).</p>
+                    <p>- Sinh viên Hệ Đào tào từ xa: Liên hệ với Trung tâm Đào tạo từ xa để được hỗ trợ.</p>
+                    <p>- Học viên Cao học: Liên hệ với Khoa Đào tạo Sau đại học hoặc TT.QLHTTT để được hỗ trợ.</p>
+                    <p>- CB-NV/GV: Quý thầy/cô vui lòng liên hệ trực tiếp phòng 101 (Trung tâm Quản lý Hệ thống thông tin) tại 35-37 Hồ Hảo Hớn, Phường Cô Giang, Q1, Tp.HCM (Không hỗ trợ cấp lại mật khẩu qua điện thoại)</p>
+                </div>
+
+                <div class="subsupport">
+                    <p>--HOẶC--</p>
+                    <div class="subsupport-infor">
+                        <p>Sử dụng email đã được Trường cấp gởi yêu cầu hỗ trợ đến địa chỉ email hotro.ou.edu.vn hoặc truy cập https://hotro.ou.edu.vn để gởi yêu cầu hỗ trợ.</p>
                     </div>
+                </div>
+                <div class="end">
+                    <p class="end-title">© 2017 Trung tâm Quản lý Hệ thống thông tin.</p>
+                    <p class="end-title">HCMCOU - SSO, Phiên bản 20220402</p>
                 </div>
             </div>
         </div>
-    </section>
-<!-- breadcrumb start-->
-
- <section class="login_part padding_top" id="scroll_this">
-        <div class="container">
-            <div class="row align-items-center">
-                <div class="col-lg-6 col-md-6">
-                    <div class="login_part_text text-center">
-                        <div class="login_part_text_iner">
-                            <h2>Chưa có tài khoản?</h2>
-                            <p>Tạo ngay tài khoản mới để nhận thêm nhiều ưu đãi về
-                                chất lượng dịch vụ và mở khóa chức năng thanh toán momo</p>
-                            <a href="/register" class="btn_3">Tạo tài khoản</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-6 col-md-6">
-                    <div class="login_part_form">
-                        <div class="login_part_form_iner">
-                            <h3>Chào mừng trở lại ! <br>
-                                Đăng nhập ngay</h3>
-                            <form class="row contact_form" action="" method="post" novalidate="novalidate">
-                                <div class="col-md-12 form-group p_star">
-                                    <input type="text" class="form-control" id="username" name="username" value=""
-                                        placeholder="Nhập tên tài khoản">
-                                </div>
-                                <div class="col-md-12 form-group p_star">
-                                    <input type="password" class="form-control" id="password" name="password" value=""
-                                        placeholder="Nhập mật khẩu">
-                                </div>
-                                <div class="col-md-12 form-group">
-<!--                                    <div class="creat_account d-flex align-items-center">-->
-<!--                                        <input type="checkbox" id="f-option" name="selector">-->
-<!--                                        <label for="f-option">Ghi nhớ tài khoản</label>-->
-<!--                                    </div>-->
-                                    <button type="submit" value="submit" class="btn_3">
-                                        Đăng nhập
-                                    </button>
-<!--                                    <a class="lost_pass" href="#">Quên mật khẩu?</a>-->
-                                </div>
-                            </form>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-{% endblock %}
+    </div>
+</body>
+</html>
