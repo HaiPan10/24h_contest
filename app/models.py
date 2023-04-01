@@ -14,6 +14,100 @@ class BaseModel(db.Model):
     id = Column(Integer, primary_key=True, autoincrement=True)
 
 
+class GiangVien(BaseModel):
+    ho_gv = Column(String(50), nullable=True)
+    ten_gv = Column(String(50), nullable=True)
+    gioi_tinh = Column(String(15), nullable=True)
+    tai_khoan_gv = relationship('tai_khoan_gv', backref='giang_vien', lazy=True)
+    nhieu_lop = relationship('day_nhieu_lop', backref='giang_vien', lazy=True)
+
+
+class PhongHoc(BaseModel):
+    ten_phong = Column(String(15), nullable=False)
+    kich_co = Column(Integer, nullable=False)
+    tinh_trang = Column(String(25), default="Tot")
+    cac_lop_hoc = relationship('cac_lop_hoc', backref='phong_hoc', lazy=True)
+    cac_phieu_muon = relationship('cac_phieu_muon', backref='phong_hoc', lazy=True)
+
+
+class Ca(BaseModel):
+    ten_ca = Column(String(15), nullable=False)
+    gio_bat_dau = Column(DateTime)
+    gio_ket_thuc = Column(DateTime)
+    cac_lop_hoc = relationship('cac_lop_hoc', backref='ca', lazy=True)
+    cac_phieu_muon = relationship('cac_phieu_muon', backref='ca', lazy=True)
+
+
+class TaiKhoan(BaseModel):
+    ho_chu_tk = Column(String(50), nullable=False)
+    ten_chu_tk = Column(String(25), nullable=False)
+    dai_dien_to_chuc = Column(String(50), nullable=False)
+    gmail = Column(String(50), nullable=True)
+    mat_khau = Column(String(50), nullable=False)
+    so_dien_thoai = Column(String(10), nullable=True)
+    so_luot = Column(Integer, default=1)
+    loai_tai_khoan = Column(String(50), nullable=False)
+    da_bi_khoa = Column(Boolean, default=False)
+    cac_phieu_muon = relationship('cac_phieu_muon', backref='tai_khoan', lazy=True)
+
+
+class TaiKhoanGV(TaiKhoan):
+    gv_id = Column(Integer, ForeignKey(GiangVien.id), nullable=False)
+    cac_day_bu = relationship('cac_day_bu', backref='tai_khoan_gv', Lazy=True)
+
+
+class MonHoc(BaseModel):
+    ten_mon = Column(String(50), nullable=False)
+    cac_lop_hoc = relationship('cac_lop_hoc', backref='mon_hoc', lazy=True)
+
+
+class DayInWeek(Enum):
+    MON = 1
+    TUE = 2
+    WED = 3
+    THUR = 4
+    FRI = 5
+    SAT = 6
+    SUN = 7
+
+
+class LopHoc(BaseModel):
+    thu_trong_tuan = Column(Enum(DayInWeek))
+    mon_hoc_id = Column(Integer, ForeignKey(MonHoc.id), nullable=False)
+    ca_id = Column(Integer, ForeignKey(Ca.id), nullable=False)
+    phong_hoc_id = Column(Integer, ForeignKey(PhongHoc.id), nullable=False)
+    nhieu_gv_day = relationship('nhieu_gv_day', backref="lop_hoc", lazy=True)
+
+
+class Day(BaseModel):
+    gv_id = Column(Integer, ForeignKey(GiangVien.id), nullable=False)
+    lop_hoc_id = Column(Integer, ForeignKey(LopHoc.id), nullable=False)
+
+
+class PhieuMuonPhong(BaseModel):
+    thoi_gian_dat = Column(DateTime)
+    ngay_muon = Column(DateTime)
+    ly_do = Column(Text)
+    tai_khoan_id = Column(Integer, ForeignKey(TaiKhoan.id), nullable=False)
+    ca_id = Column(Integer, ForeignKey(Ca.id), nullable=False)
+    phong_hoc_id = Column(Integer, ForeignKey(PhongHoc.id), nullable=False)
+    cac_day_bu = relationship('cac_day_bu', backref='phieu_muon_phong', Lazy=True)
+
+
+class DayBu(BaseModel):
+    hoc_ky = Column(String(15), nullable=True)
+    nam_hoc = Column(String(15), nullable=True)
+    phieu_mp_id = Column(Integer, ForeignKey(PhieuMuonPhong.id), nullable=False)
+    tai_khoan_gv_id = Column(Integer, ForeignKey(TaiKhoanGV.id), nullable=False)
+
+
+'''
+________________________Old code________________________
+________________________Please Don't____________________
+________________________Remove Or Comment_______________
+'''
+
+
 class Categories(BaseModel):
     category_name = Column(String(50), nullable=False)
     books = relationship('Books', backref='categories', lazy=True)
@@ -98,9 +192,9 @@ class Comment(BaseModel):
 
 if __name__ == '__main__':
     with app.app_context():
-        pass
-        # db.drop_all()
-        # db.create_all()
+        # pass
+        db.drop_all()
+        db.create_all()
         # name = 'Admin'
         # username = 'admin'
         # password = str(hashlib.md5('1'.encode('utf-8')).hexdigest())
