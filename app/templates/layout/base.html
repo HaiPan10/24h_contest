@@ -11,20 +11,6 @@
         <link href=" {{ url_for('static', filename='css/style.css') }}" rel="stylesheet"/>
     {% endblock %}
     {% block js %}
-        <script>
-        window.onscroll = function() {myFunction()};
-
-        var header = document.getElementById("myHeader");
-        var sticky = header.offsetTop;
-
-        function myFunction() {
-          if (window.pageYOffset > sticky) {
-            header.classList.add("sticky");
-          } else {
-            header.classList.remove("sticky");
-          }
-        }
-        </script>
         <script src="https://kit.fontawesome.com/d160cadc4a.js" crossorigin="anonymous"></script>
     {% endblock %}
 </head>
@@ -38,5 +24,20 @@
 
     {% block footer %}
     {% endblock %}
+
+    <script>
+    window.onscroll = function() {myFunction()};
+
+    var header = document.getElementById("header");
+    var sticky = header.offsetTop;
+
+    function myFunction() {
+        if (window.pageYOffset > sticky) {
+            header.classList.add("sticky");
+        } else {
+            header.classList.remove("sticky");
+        }
+    }
+    </script>
 </body>
 </html>

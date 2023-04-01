@@ -18,7 +18,8 @@ body {
     background-color: var(--primary-background__color);
     padding: 15px;
     color: var(--primary-word__color);
-    box-shadow: 0 0.5rem 1rem rgba(0,0,0,0.15) !important;
+    box-shadow: 0 0.5px 1px rgba(0,0,0,0.15);
+    z-index: 1;
 }
 
 .sticky {
@@ -31,7 +32,7 @@ body {
     padding-top: 102px;
 }
 
-.header-shortcut{
+.title{
     font-size: 16px;
     padding: 10px;
 }
@@ -56,7 +57,7 @@ body {
 
 #content-container {
     width: 100%;
-    height: 606px;
+    height: 565px;
     display: flex;
     flex-direction: row;
 }
@@ -74,14 +75,24 @@ body {
     width: 20%;
     height: 100%;
     margin: 10px 2px 10px 10px;
+    display: flex;
+    flex-direction: column;
+}
+
+.border-radius__top {
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+}
+
+.border-radius__bottom {
+    border-bottom-left-radius: 3px;
+    border-bottom-right-radius: 3px;
 }
 
 .sub-header {
     background-color: var(--primary-background__color);
     padding: 8px 25px;
     color: white;
-    border-top-left-radius: 5px;
-    border-top-right-radius: 5px;
 }
 
 #sub-container_left {
@@ -130,6 +141,7 @@ body {
 .sub-column_left__left--primary_content {
     color: #212529;
     font-weight: bold;
+    padding: 5px;
 }
 
 .list_member {
@@ -163,4 +175,122 @@ body {
     height: 200px;
     background-color: #bad5e4;
     margin-top: 60px;
+}
+
+#login-area {
+    width: 100%;
+    height: 47%;
+    background-color: white;
+    margin-bottom: 10px;
+    box-shadow: 0 2px 2px rgba(0,0,0,0.15);
+    display: flex;
+    flex-direction: column;
+}
+
+#feature-area {
+    width: 100%;
+    height: 50%;
+}
+
+.input-with__icon {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    padding: 5px 0px 0 7px;
+
+}
+
+.icon-with__input {
+    background-color: #E9ECEF;
+    padding: 7px;
+    color: #495057;
+    border: 1px solid #ccc;
+    width: 6%;
+    text-align: center;
+}
+
+.input-user__name {
+    width: 83%;
+    position: relative;
+    border: 1px solid #ccc;
+}
+
+.input-user__name input {
+    width: 100%;
+    height: 100%;
+    box-sizing: border-box;
+    position: absolute;
+    top: 0;
+    left: 0;
+    border: 1px solid white;
+}
+
+.input-pass__word {
+    width: 71%;
+    position: relative;
+    border: 1px solid #ccc;
+}
+
+.input-pass__word input {
+    width: 100%;
+    height: 100%;
+    box-sizing: border-box;
+    position: absolute;
+    top: 0;
+    left: 0;
+    border: 1px solid white;
+}
+
+.border-radius__left {
+    border-top-left-radius: 5px;
+    border-bottom-left-radius: 5px;
+}
+
+.border-radius__right {
+    border-top-right-radius: 2px;
+    border-bottom-right-radius: 2px;
+}
+
+.btn-login__container {
+    padding: 3px 7px;
+}
+
+.btn-login {
+    width: 100%;
+    padding: 8px;
+    color: white;
+    font-size: 15px;
+    background-color: #07689F;
+    border-radius: 5px;
+    border: 1px solid white;
+    cursor: pointer;
+}
+
+.icon-in__button {
+    padding-right: 10px;
+}
+
+.notice-login {
+    text-align: center;
+    background: #cff6f2 linear-gradient(180deg, #d6f7f4, #cff6f2) repeat-x;
+    color: #096e62;
+    border-color: #bcf3ec;
+    font-size: 80%;
+    font-weight: 400;
+    padding: 2px;
+    margin: 0px 8px;
+    border-radius: 5px;
+    line-height: 20px;
+}
+
+.btn-login__second {
+    width: 100%;
+    padding: 10px;
+    color: #212529;
+    background: #11D3BC linear-gradient(180deg, #35dac6, #11D3BC) repeat-x;
+    font-size: 15px;
+    background-color: #11D3BC;
+    border-radius: 5px;
+    border: 1px solid white;
+    cursor: pointer;
 }
