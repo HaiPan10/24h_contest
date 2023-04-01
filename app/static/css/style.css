@@ -269,7 +269,8 @@ body {
 
 }
 .btn-login-hcmou {
-    tex-decoration:none;
+    color: inherit;
+    text-decoration: inherit;
 }
 .icon-in__button {
     padding-right: 10px;
@@ -298,10 +299,7 @@ body {
     border-radius: 5px;
     border: 1px solid white;
     cursor: pointer;
-<<<<<<< HEAD
     text-decoration: none;
-=======
->>>>>>> 633ec29 ([Phong] - commit)
 }
 
 .sub_footer--container {
@@ -323,10 +321,7 @@ body {
 .sub-footer--list_flex {
     display: flex;
     flex-direction: row;
-<<<<<<< HEAD
-=======
     padding-bottom: 5px;
->>>>>>> 633ec29 ([Phong] - commit)
 }
 
 .icon-in--sub__footer {
@@ -335,10 +330,7 @@ body {
 }
 
 .number-in--sub__footer {
-<<<<<<< HEAD
     padding-left: 10px;
-}
-=======
     width: 10%;
     padding-left: 10px;
 }
@@ -362,4 +354,3 @@ body {
     text-align: center;
     line-height: 22px;
 }
->>>>>>> 633ec29 ([Phong] - commit)
