@@ -264,8 +264,11 @@ body {
     border-radius: 5px;
     border: 1px solid white;
     cursor: pointer;
-}
 
+}
+.btn-login-hcmou {
+    tex-decoration:none;
+}
 .icon-in__button {
     padding-right: 10px;
 }
@@ -293,6 +296,7 @@ body {
     border-radius: 5px;
     border: 1px solid white;
     cursor: pointer;
+    text-decoration: none;
 }
 
 .sub_footer--container {
