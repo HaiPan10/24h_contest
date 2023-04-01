@@ -192,9 +192,9 @@ class Comment(BaseModel):
 
 if __name__ == '__main__':
     with app.app_context():
-        pass
-        # db.drop_all()
-        # db.create_all()
+        # pass
+        db.drop_all()
+        db.create_all()
         # name = 'Admin'
         # username = 'admin'
         # password = str(hashlib.md5('1'.encode('utf-8')).hexdigest())
