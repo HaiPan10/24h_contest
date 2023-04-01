@@ -12,6 +12,7 @@ body {
   margin: 0;
   font-size: 15px;
   background-color: #e3e3e3;
+  overflow-x: hidden;
 }
 
 #header {
@@ -172,9 +173,10 @@ body {
 }
 
 #sub_footer {
-    height: 200px;
+    height: 130px;
     background-color: #bad5e4;
     margin-top: 60px;
+    margin-bottom: 0;
 }
 
 #login-area {
@@ -296,7 +298,10 @@ body {
     border-radius: 5px;
     border: 1px solid white;
     cursor: pointer;
+<<<<<<< HEAD
     text-decoration: none;
+=======
+>>>>>>> 633ec29 ([Phong] - commit)
 }
 
 .sub_footer--container {
@@ -318,6 +323,10 @@ body {
 .sub-footer--list_flex {
     display: flex;
     flex-direction: row;
+<<<<<<< HEAD
+=======
+    padding-bottom: 5px;
+>>>>>>> 633ec29 ([Phong] - commit)
 }
 
 .icon-in--sub__footer {
@@ -326,5 +335,31 @@ body {
 }
 
 .number-in--sub__footer {
+<<<<<<< HEAD
     padding-left: 10px;
 }
+=======
+    width: 10%;
+    padding-left: 10px;
+}
+
+.content-in--sub__footer {
+    width: 80%;
+}
+
+.content-in--sub__footer span {
+    font-size: 16px;
+    color: black;
+}
+
+.footer {
+    background-color: var(--primary-background__color);
+    margin-top: 0;
+}
+
+.footer-content {
+    color: white;
+    text-align: center;
+    line-height: 22px;
+}
+>>>>>>> 633ec29 ([Phong] - commit)
