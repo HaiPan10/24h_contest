@@ -294,3 +294,33 @@ body {
     border: 1px solid white;
     cursor: pointer;
 }
+
+.sub_footer--container {
+    padding: 20px 120px;
+    display: flex;
+    justify-content: flex-end;
+}
+
+.sub_footer--flex {
+    display: flex;
+    flex-direction: column;
+}
+
+.sub-footer--title {
+    font-weight: bold;
+    padding-bottom: 10px;
+}
+
+.sub-footer--list_flex {
+    display: flex;
+    flex-direction: row;
+}
+
+.icon-in--sub__footer {
+    color: var(--primary-background__color);
+    padding-right: 5px;
+}
+
+.number-in--sub__footer {
+    padding-left: 10px;
+}
