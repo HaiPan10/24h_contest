@@ -4,7 +4,7 @@ from datetime import datetime
 from app import db, app
 from sqlalchemy.orm import relationship
 from sqlalchemy import Integer, Column, String, ForeignKey, DateTime, Float, Enum, Text, Boolean
-from enum import Enum as UserEnum, Enum as StatusEnum
+from enum import Enum as UserEnum, Enum as StatusEnum, Enum as DayInWeekEnum
 from flask_login import UserMixin
 
 
@@ -18,24 +18,24 @@ class GiangVien(BaseModel):
     ho_gv = Column(String(50), nullable=True)
     ten_gv = Column(String(50), nullable=True)
     gioi_tinh = Column(String(15), nullable=True)
-    tai_khoan_gv = relationship('tai_khoan_gv', backref='giang_vien', lazy=True)
-    nhieu_lop = relationship('day_nhieu_lop', backref='giang_vien', lazy=True)
+    tai_khoan_gv = relationship('TaiKhoanGV', backref='giang_vien', lazy=True)
+    day = relationship('Day', backref='giang_vien', lazy=True)
 
 
 class PhongHoc(BaseModel):
     ten_phong = Column(String(15), nullable=False)
     kich_co = Column(Integer, nullable=False)
     tinh_trang = Column(String(25), default="Tot")
-    cac_lop_hoc = relationship('cac_lop_hoc', backref='phong_hoc', lazy=True)
-    cac_phieu_muon = relationship('cac_phieu_muon', backref='phong_hoc', lazy=True)
+    lop_hoc = relationship('LopHoc', backref='phong_hoc', lazy=True)
+    phieu_muon_phong = relationship('PhieuMuonPhong', backref='phong_hoc', lazy=True)
 
 
 class Ca(BaseModel):
     ten_ca = Column(String(15), nullable=False)
     gio_bat_dau = Column(DateTime)
     gio_ket_thuc = Column(DateTime)
-    cac_lop_hoc = relationship('cac_lop_hoc', backref='ca', lazy=True)
-    cac_phieu_muon = relationship('cac_phieu_muon', backref='ca', lazy=True)
+    lop_hoc = relationship('LopHoc', backref='ca', lazy=True)
+    phieu_muon = relationship('PhieuMuonPhong', backref='ca', lazy=True)
 
 
 class TaiKhoan(BaseModel):
@@ -48,20 +48,20 @@ class TaiKhoan(BaseModel):
     so_luot = Column(Integer, default=1)
     loai_tai_khoan = Column(String(50), nullable=False)
     da_bi_khoa = Column(Boolean, default=False)
-    cac_phieu_muon = relationship('cac_phieu_muon', backref='tai_khoan', lazy=True)
+    phieu_muon = relationship('PhieuMuonPhong', backref='tai_khoan', lazy=True)
 
 
 class TaiKhoanGV(TaiKhoan):
     gv_id = Column(Integer, ForeignKey(GiangVien.id), nullable=False)
-    cac_day_bu = relationship('cac_day_bu', backref='tai_khoan_gv', Lazy=True)
+    day_bu = relationship('DayBu', backref='tai_khoan_gv', lazy=True)
 
 
 class MonHoc(BaseModel):
     ten_mon = Column(String(50), nullable=False)
-    cac_lop_hoc = relationship('cac_lop_hoc', backref='mon_hoc', lazy=True)
+    lop_hoc = relationship('LopHoc', backref='mon_hoc', lazy=True)
 
 
-class DayInWeek(Enum):
+class DayInWeek(DayInWeekEnum):
     MON = 1
     TUE = 2
     WED = 3
@@ -76,7 +76,7 @@ class LopHoc(BaseModel):
     mon_hoc_id = Column(Integer, ForeignKey(MonHoc.id), nullable=False)
     ca_id = Column(Integer, ForeignKey(Ca.id), nullable=False)
     phong_hoc_id = Column(Integer, ForeignKey(PhongHoc.id), nullable=False)
-    nhieu_gv_day = relationship('nhieu_gv_day', backref="lop_hoc", lazy=True)
+    day = relationship('Day', backref="lop_hoc", lazy=True)
 
 
 class Day(BaseModel):
@@ -91,7 +91,7 @@ class PhieuMuonPhong(BaseModel):
     tai_khoan_id = Column(Integer, ForeignKey(TaiKhoan.id), nullable=False)
     ca_id = Column(Integer, ForeignKey(Ca.id), nullable=False)
     phong_hoc_id = Column(Integer, ForeignKey(PhongHoc.id), nullable=False)
-    cac_day_bu = relationship('cac_day_bu', backref='phieu_muon_phong', Lazy=True)
+    day_bu = relationship('DayBu', backref='phieu_muon_phong', lazy=True)
 
 
 class DayBu(BaseModel):
@@ -102,9 +102,9 @@ class DayBu(BaseModel):
 
 
 '''
-________________________Old code________________________
-________________________Please Don't____________________
-________________________Remove Or Comment_______________
+___________________________________Old code___________________________________
+___________________________________Please Don't_______________________________
+___________________________________Remove Or Comment__________________________
 '''
 
 

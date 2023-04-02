@@ -1,8 +1,8 @@
 # Định tuyến tới biến app trang init.py
 import requests
 
-from app.admin import InputBooksView
-from app.models import UserRole
+# from app.admin import InputBooksView
+# from app.models import UserRole
 from app import app, dao, login, utils, admin as ad, controllers
 # Import render_template để dùng render_template
 from flask import render_template, redirect, session, jsonify, make_response
