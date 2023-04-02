@@ -18,7 +18,6 @@ class GiangVien(BaseModel):
     ho_gv = Column(String(50), nullable=True)
     ten_gv = Column(String(50), nullable=True)
     gioi_tinh = Column(String(15), nullable=True)
-    tai_khoan_gv = relationship('TaiKhoanGV', backref='giang_vien', lazy=True)
     day = relationship('Day', backref='giang_vien', lazy=True)
 
 
@@ -92,7 +91,12 @@ ___________________________________Please Don't_______________________________
 ___________________________________Remove Or Comment__________________________
 '''
 
-'''
+
+class UserRole(UserEnum):
+    USER = 1
+    ADMIN = 2
+
+
 class Categories(BaseModel):
     category_name = Column(String(50), nullable=False)
     books = relationship('Books', backref='categories', lazy=True)
@@ -118,11 +122,6 @@ class Books(BaseModel):
 
     def __str__(self):
         return self.book_name
-
-
-class UserRole(UserEnum):
-    USER = 1
-    ADMIN = 2
 
 
 class Status(StatusEnum):
@@ -173,14 +172,13 @@ class Comment(BaseModel):
     created_date = Column(DateTime, default=datetime.now())
     user_account_id = Column(Integer, ForeignKey(UserAccount.id), nullable=False)
     book_id = Column(Integer, ForeignKey(Books.id), nullable=False)
-'''
 
 
 if __name__ == '__main__':
     with app.app_context():
-        #pass
-        db.drop_all()
-        db.create_all()
+        pass
+        # db.drop_all()
+        # db.create_all()
         # name = 'Admin'
         # username = 'admin'
         # password = str(hashlib.md5('1'.encode('utf-8')).hexdigest())
