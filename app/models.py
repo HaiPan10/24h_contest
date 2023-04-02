@@ -39,21 +39,14 @@ class Ca(BaseModel):
 
 
 class TaiKhoan(BaseModel):
-    ho_chu_tk = Column(String(50), nullable=False)
-    ten_chu_tk = Column(String(25), nullable=False)
     dai_dien_to_chuc = Column(String(50), nullable=False)
+    ten_tai_khoan = Column(String(50), nullable=False)
     gmail = Column(String(50), nullable=True)
     mat_khau = Column(String(50), nullable=False)
-    so_dien_thoai = Column(String(10), nullable=True)
     so_luot = Column(Integer, default=1)
     loai_tai_khoan = Column(String(50), nullable=False)
     da_bi_khoa = Column(Boolean, default=False)
     phieu_muon = relationship('PhieuMuonPhong', backref='tai_khoan', lazy=True)
-
-
-class TaiKhoanGV(TaiKhoan):
-    gv_id = Column(Integer, ForeignKey(GiangVien.id), nullable=False)
-    day_bu = relationship('DayBu', backref='tai_khoan_gv', lazy=True)
 
 
 class MonHoc(BaseModel):
@@ -91,14 +84,6 @@ class PhieuMuonPhong(BaseModel):
     tai_khoan_id = Column(Integer, ForeignKey(TaiKhoan.id), nullable=False)
     ca_id = Column(Integer, ForeignKey(Ca.id), nullable=False)
     phong_hoc_id = Column(Integer, ForeignKey(PhongHoc.id), nullable=False)
-    day_bu = relationship('DayBu', backref='phieu_muon_phong', lazy=True)
-
-
-class DayBu(BaseModel):
-    hoc_ky = Column(String(15), nullable=True)
-    nam_hoc = Column(String(15), nullable=True)
-    phieu_mp_id = Column(Integer, ForeignKey(PhieuMuonPhong.id), nullable=False)
-    tai_khoan_gv_id = Column(Integer, ForeignKey(TaiKhoanGV.id), nullable=False)
 
 
 '''
@@ -107,7 +92,7 @@ ___________________________________Please Don't_______________________________
 ___________________________________Remove Or Comment__________________________
 '''
 
-
+'''
 class Categories(BaseModel):
     category_name = Column(String(50), nullable=False)
     books = relationship('Books', backref='categories', lazy=True)
@@ -188,13 +173,14 @@ class Comment(BaseModel):
     created_date = Column(DateTime, default=datetime.now())
     user_account_id = Column(Integer, ForeignKey(UserAccount.id), nullable=False)
     book_id = Column(Integer, ForeignKey(Books.id), nullable=False)
+'''
 
 
 if __name__ == '__main__':
     with app.app_context():
-        pass
-        # db.drop_all()
-        # db.create_all()
+        #pass
+        db.drop_all()
+        db.create_all()
         # name = 'Admin'
         # username = 'admin'
         # password = str(hashlib.md5('1'.encode('utf-8')).hexdigest())

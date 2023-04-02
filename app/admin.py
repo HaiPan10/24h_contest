@@ -23,6 +23,12 @@ class GiangVienView(ModelView):
     can_view_details = True
 
 
+class MonHoc(ModelView):
+    can_view_details = True
+
+
+
+
 '''
 ___________________________________Old code___________________________________
 ___________________________________Please Don't_______________________________
