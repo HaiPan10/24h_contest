@@ -409,3 +409,7 @@ def user_orders_view():
 # check orders and delete order which isn't pay after a period of time
 def check_orders_status():
     pass
+
+
+def book_room():
+    return render_template('book_room.html')

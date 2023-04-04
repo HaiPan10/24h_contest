@@ -14,6 +14,7 @@ import cloudinary
 import cloudinary.uploader
 
 app.add_url_rule("/", 'index', controllers.home)
+app.add_url_rule("/dat_phong", 'book_room', controllers.book_room)
 # app.add_url_rule("/products", 'products', controllers.product_list)
 # app.add_url_rule("/products/product_id=<int:book_id>", 'product-details', controllers.product_detail)
 # app.add_url_rule("/login-admin", 'login-admin', controllers.admin_login, methods=['post'])

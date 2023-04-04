@@ -19,7 +19,7 @@ html{
 .modal_body {
     width: 360px;
     height: 900px;
-    background-color: #010f68;
+    background-image: url("../images/background_login.jpg");
     position: relative;
     border-radius: 4px;
 }
@@ -123,4 +123,9 @@ html{
 .end-title:last-child{
         margin-top: -14px;
 
+}
+
+.btn-login-hcmou {
+    color: inherit;
+    text-decoration: inherit;
 }

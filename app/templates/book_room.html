@@ -1,10 +1,429 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>$Title$</title>
-</head>
-<body>
-$END$
-</body>
-</html>
+{% extends 'layout/base.html' %}
+{% block title %}Tiện ích sinh viên{% endblock %}
+{% block content %}
+<div id="container">
+    <div id="banner">
+    <img src="/static/images/banner.png" alt="">
+</div>
+    <div id="content-container">
+    <div id="column-left">
+        <div class="sub-header border-radius__top">ĐĂNG KÝ MƯỢN PHÒNG HỌC</div>
+        <div id="sub-container_left">
+            <div id="sub-column_left__left--book_room">
+                <div class="drop-down_row sub-row">
+                    <div class="drop-down_member">
+                        <span class="drop-down_title">Cơ sở:</span>
+                        <select>
+                            <option value="option2" selected>Nguyễn Kiệm</option>
+                        </select>
+                    </div>
+                    <div class="drop-down_member">
+                        <select id="select-floor">
+                            <option value="default-option select">Chọn lầu</option>
+                            <option value="option-floor_ground">Lầu trệt</option>
+                            <option value="option-floor_1">Lầu 1</option>
+                            <option value="option-floor_2">Lầu 2</option>
+                            <option value="option-floor_3">Lầu 3</option>
+                            <option value="option-floor_4">Lầu 4</option>
+                            <option value="option-floor_5">Lầu 5</option>
+                        </select>
+                    </div>
+                    <div class="drop-down_member">
+                        <select>
+                            <option value="option1" selected>Ca nửa buổi sáng 1 (7h - 9h)</option>
+                            <option value="option2">Ca buổi sáng 2 (9h - 11h)</option>
+                            <option value="option3">Ca nửa buổi chiều 1 (13h - 15h)</option>
+                            <option value="option4">Ca nửa buổi chiều 2 (15h - 17h)</option>
+                            <option value="option5">Ca sáng (7h - 11h)</option>
+                            <option value="option6">Ca chiều (13h - 17h)</option>
+                            <option value="option7">Ca tối (18h - 20h)</option>
+                            <option value="option8">Ca ngày 1 (7h - 17h)</option>
+                            <option value="option9">Ca ngày 2 (7h - 20h)</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="drop-down_row sub-row">
+                    <div class="drop-down_member only-member">
+                        <span class="drop-down_title">Ngày đặt phòng: </span><input type="date" name="date">
+                    </div>
+                </div>
+                <div class="primary-row">
+                    <div id="ground-floor" class="floor-container" style="display: none;">
+                        <div class="col-floor">
+                            <div class="row-floor">007</div>
+                            <div class="empty-block"></div>
+                            <div class="empty-block"></div>
+                        </div>
+                        <div class="col-floor">
+                            <div class="row-floor">006</div>
+                            <div class="empty-block"></div>
+                            <div class="empty-block"></div>
+                        </div>
+                        <div class="col-floor">
+                            <div class="row-floor">005</div>
+                            <div class="empty-block"></div>
+                            <div class="row-floor">001</div>
+                        </div>
+                        <div class="col-floor">
+                            <div class="row-floor">004</div>
+                            <div class="empty-block"></div>
+                            <div class="row-floor">002</div>
+                        </div>
+                        <div class="col-floor">
+                            <div class="empty-block"></div>
+                            <div class="row-floor">003</div>
+                            <div class="empty-block"></div>
+                        </div>
+                    </div>
+                    <div id="first-floor" class="floor-container" style="display: none;">
+                        <div class="col-floor">
+                            <div class="empty-block"></div>
+                            <div class="row-floor">109</div>
+                            <div class="row-floor">110</div>
+                        </div>
+                        <div class="col-floor">
+                            <div class="row-floor">108</div>
+                            <div class="empty-block"></div>
+                            <div class="empty-block"></div>
+                        </div>
+                        <div class="col-floor">
+                            <div class="row-floor">107</div>
+                            <div class="empty-block"></div>
+                            <div class="empty-block"></div>
+                        </div>
+                        <div class="col-floor">
+                            <div class="row-floor">106</div>
+                            <div class="empty-block"></div>
+                            <div class="row-floor">101</div>
+                        </div>
+                        <div class="col-floor">
+                            <div class="row-floor">105</div>
+                            <div class="empty-block"></div>
+                            <div class="row-floor">102</div>
+                        </div>
+                        <div class="col-floor">
+                            <div class="half-empty_block"></div>
+                            <div class="row-floor">104</div>
+                            <div class="row-floor">103</div>
+                            <div class="half-empty_block"></div>
+                        </div>
+                    </div>
+                    <div id="second-floor" class="floor-container" style="display: none;">
+                        <div class="col-floor">
+                            <div class="row-floor">209</div>
+                            <div class="row-floor">210</div>
+                            <div class="row-floor">211</div>
+                        </div>
+                        <div class="col-floor">
+                            <div class="row-floor">208</div>
+                            <div class="empty-block"></div>
+                            <div class="row-floor">212</div>
+                        </div>
+                        <div class="col-floor">
+                            <div class="row-floor">207A</div>
+                            <div class="empty-block"></div>
+                            <div class="row-floor">201</div>
+                        </div>
+                        <div class="col-floor">
+                            <div class="row-floor">207</div>
+                            <div class="empty-block"></div>
+                            <div class="row-floor">202</div>
+                        </div>
+                        <div class="col-floor">
+                            <div class="row-floor">206</div>
+                            <div class="empty-block"></div>
+                            <div class="row-floor">203</div>
+                        </div>
+                        <div class="col-floor">
+                            <div class="half-empty_block"></div>
+                            <div class="row-floor">205</div>
+                            <div class="row-floor">204</div>
+                            <div class="half-empty_block"></div>
+                        </div>
+                    </div>
+                    <div id="third-floor" class="floor-container" style="display: none;">
+                        <div class="col-floor">
+                            <div class="row-floor">309</div>
+                            <div class="row-floor">310</div>
+                            <div class="row-floor">311</div>
+                        </div>
+                        <div class="col-floor">
+                            <div class="row-floor">308</div>
+                            <div class="empty-block"></div>
+                            <div class="row-floor">312</div>
+                        </div>
+                        <div class="col-floor">
+                            <div class="row-floor">307A</div>
+                            <div class="empty-block"></div>
+                            <div class="row-floor">301</div>
+                        </div>
+                        <div class="col-floor">
+                            <div class="row-floor">307</div>
+                            <div class="empty-block"></div>
+                            <div class="row-floor">302</div>
+                        </div>
+                        <div class="col-floor">
+                            <div class="row-floor">306</div>
+                            <div class="empty-block"></div>
+                            <div class="row-floor">303</div>
+                        </div>
+                        <div class="col-floor">
+                            <div class="half-empty_block"></div>
+                            <div class="row-floor">305</div>
+                            <div class="row-floor">304</div>
+                            <div class="half-empty_block"></div>
+                        </div>
+                    </div>
+                    <div id="fourth-floor" class="floor-container" style="display: none;">
+                        <div class="col-floor">
+                            <div class="empty-block"></div>
+                            <div class="empty-block"></div>
+                            <div class="row-floor">408</div>
+                        </div>
+                        <div class="col-floor">
+                            <div class="empty-block"></div>
+                            <div class="empty-block"></div>
+                            <div class="row-floor">409</div>
+                        </div>
+                        <div class="col-floor">
+                            <div class="row-floor">407A</div>
+                            <div class="empty-block"></div>
+                            <div class="row-floor">401</div>
+                        </div>
+                        <div class="col-floor">
+                            <div class="row-floor">407</div>
+                            <div class="empty-block"></div>
+                            <div class="row-floor">402</div>
+                        </div>
+                        <div class="col-floor">
+                            <div class="row-floor">406</div>
+                            <div class="empty-block"></div>
+                            <div class="row-floor">403</div>
+                        </div>
+                        <div class="col-floor">
+                            <div class="half-empty_block"></div>
+                            <div class="row-floor">405</div>
+                            <div class="row-floor">404</div>
+                            <div class="half-empty_block"></div>
+                        </div>
+                    </div>
+                    <div id="fifth-floor" class="floor-container" style="display: none;">
+                        <div class="col-floor">
+                            <div class="empty-block"></div>
+                            <div class="empty-block"></div>
+                            <div class="row-floor">PM03</div>
+                        </div>
+                        <div class="col-floor">
+                            <div class="empty-block"></div>
+                            <div class="empty-block"></div>
+                            <div class="row-floor">PM02</div>
+                        </div>
+                        <div class="col-floor">
+                            <div class="row-floor">PM04</div>
+                            <div class="empty-block"></div>
+                            <div class="row-floor">PM01</div>
+                        </div>
+                        <div class="col-floor">
+                            <div class="row-floor">PM05</div>
+                            <div class="empty-block"></div>
+                            <div class="empty-block"></div>
+                        </div>
+                        <div class="col-floor">
+                            <div class="row-floor">PM06</div>
+                            <div class="empty-block"></div>
+                            <div class="empty-block"></div>
+                        </div>
+                        <div class="col-floor">
+                            <div class="row-floor">PM07</div>
+                            <div class="empty-block"></div>
+                            <div class="empty-block"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="sub-row map-title">Sơ đồ giảng đường</div>
+                <div class="drop-down_row sub-row">
+                    <div class="color-tag__col">
+                        <div class="color-tag color-green"></div>
+                        <div class="color-title">Còn trống</div>
+                    </div>
+                    <div class="color-tag__col">
+                        <div class="color-tag color-red"></div>
+                        <div class="color-title">Bảo trì</div>
+                    </div>
+                    <div class="color-tag__col">
+                        <div class="color-tag color-grey"></div>
+                        <div class="color-title">Đã đặt/Đang sử dụng</div>
+                    </div>
+                </div>
+            </div>
+            <div id="sub-column_left__right--book_room">
+                <div class="flex-end col-header">
+                    <button class="btn-book_room btn-book_room--chosen"><i class="fa-solid fa-school icon"></i>Đặt phòng</button>
+                    <button class="btn-book_room"><i class="fa-solid fa-list-check icon"></i>Xem phiếu mượn</button>
+                </div>
+                <div class="col-primary">
+                    <div class="order-detail">
+                        <div class="order-title">ĐĂNG KÝ SỬ DỤNG GIẢNG ĐƯỜNG</div>
+
+                        <div class="inform-detail__row">
+                            <div class="inform-detail__col" id="detail-name">
+                                <div class="inform-detail_title">Họ tên người đặt phòng:</div>
+                                <div><input class="detail-input" type="text"></div>
+                            </div>
+                            <div class="inform-detail__col" id="detail-organization">
+                                <div class="inform-detail_title">Tổ chức đại diện:</div>
+                                <div><input class="detail-input" type="text"></div>
+                            </div>
+                        </div>
+
+                        <div class="inform-detail__row">
+                            <div class="inform-detail__col" id="detail-phone_number">
+                                <div class="inform-detail_title">Số điện thoại: </div>
+                                <div><input class="detail-input" type="text"></div>
+                            </div>
+                            <div class="inform-detail__col" id="detail-room_chosen">
+                                <div class="inform-detail_title">Phòng đăng ký: </div>
+                                <div><input class="detail-input" type="text"></div>
+                            </div>
+                        </div>
+
+                        <div class="inform-detail__row">
+                            <div class="inform-detail__col" id="detail-date_order">
+                                <div class="inform-detail_title">Ngày mượn: </div>
+                                <div><input class="detail-input" type="date"></div>
+                            </div>
+                            <div class="inform-detail__col" id="detail-time_start">
+                                <div class="inform-detail_title">Thời gian bắt đầu: </div>
+                                <div><input class="detail-input" type="time"></div>
+                            </div>
+                            <div class="inform-detail__col" id="detail-time_end">
+                                <div class="inform-detail_title">Thời gian kết thúc: </div>
+                                <div><input class="detail-input" type="time"></div>
+                            </div>
+                        </div>
+                        <div class="inform-detail__row">
+                            <div class="inform-detail__col">
+                                <div class="inform-detail_title">
+                                    Lý do sử dụng
+                                </div>
+                                <div>
+                                    <textarea name="purpose" id="purpose" cols="60" rows="5"></textarea>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="inform-detail__row">
+                            <input type="checkbox"><span class="alert-detail_title">Tôi cam kết sau khi sử dụng xong sẽ hoàn trả lại phòng đúng hiện trạng và cách bố trí ban đầu</span>
+                        </div>
+                        <div class="inform-detail__row flex-end">
+                            <div class="inform-detail__col">
+                                <button class="btn" id="btn-save_order">Lưu tách phiếu</button>
+                                <button class="btn" id="btn-submit">Đăng ký</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="column-right">
+        <div id="login-success" class="border-radius__bottom">
+            <div class="sub-header flex-direction__row">
+                <div class="login-title__success"><i class="fa fa-user pr-2"></i><span class="title">ĐĂNG NHẬP</span></div>
+                <div class="login-title__success--icon flex-end"><i class="fas fa-chevron-right right"></i></div>
+            </div>
+            <div class="margin-login">
+                <div class="input-with__icon border_bottom content-login">
+                    <div class="content-login__left">Tài khoản</div>
+                    <div class="content-login__right">20510120xx</div>
+                </div>
+                <div class="input-with__icon content-login">
+                    <div class="content-login__left">Họ tên</div>
+                    <div class="content-login__right">Lại Bình Phong</div>
+                </div>
+            </div>
+            <div class="btn-login__container"><button class="btn-logout"><i class="icon fas fa-sign-in-alt icon-in__button"></i>Đăng xuất</button></div>
+        </div>
+        <div id="feature-area__show flex-direction__row" class="border-radius__top">
+             <div class="sub-header border-radius__top"><i class="fas fa-cogs pr-1"></i><span class="title">TÍNH NĂNG</span></div>
+             <div class="feature-list">
+                 <div class="list_feature--member">
+                     <div class="list_content">
+                         <i class="fas fa-angle-right feature-text"></i>
+                         <span class="feature-text">Đăng ký môn học</span>
+                     </div>
+                 </div>
+                <div class="list_feature--member">
+                    <div class="list_content">
+                         <i class="fas fa-angle-right feature-text"></i>
+                         <span class="feature-text">Xem học phí</span>
+                    </div>
+                </div>
+                <div class="list_feature--member">
+                    <div class="list_content">
+                         <i class="fas fa-angle-right feature-text"></i>
+                         <span class="feature-text">Đóng học phí</span>
+                     </div>
+                </div>
+                <div class="list_feature--member">
+                    <div class="list_content">
+                         <i class="fas fa-angle-right feature-text"></i>
+                         <span class="feature-text">In phiếu nộp tiền</span>
+                     </div>
+                </div>
+                <div class="list_feature--member">
+                    <div class="list_content">
+                         <i class="fas fa-angle-right feature-text"></i>
+                         <span class="feature-text">Xem thời khóa biểu tuần</span>
+                     </div>
+                </div>
+                 <div class="list_feature--member">
+                    <div class="list_content">
+                         <i class="fas fa-angle-right feature-text"></i>
+                         <span class="feature-text">Xem thời khóa biểu học kỳ</span>
+                     </div>
+                </div>
+                 <div class="list_feature--member">
+                    <div class="list_content">
+                         <i class="fas fa-angle-right feature-text"></i>
+                         <span class="feature-text">Xem lịch thi</span>
+                     </div>
+                </div>
+                <div class="list_feature--member">
+                    <div class="list_content">
+                         <i class="fas fa-angle-right feature-text"></i>
+                         <span class="feature-text">Xem điểm</span>
+                     </div>
+                </div>
+                <div class="list_feature--member">
+                     <div class="list_content">
+                         <i class="fas fa-angle-right feature-text"></i>
+                         <span class="feature-text">Đăng ký mượn phòng học</span>
+                     </div>
+                </div>
+             </div>
+        </div>
+    </div>
+</div>
+
+<div id="sub_footer">
+    <div class="sub_footer--container">
+        <div class="sub_footer--flex">
+            <div class="sub-footer--title">THỐNG KÊ TRUY CẬP</div>
+            <div class="sub-footer--list_flex">
+                <div class="content-in--sub__footer"><i class="fa fa-users icon-in--sub__footer"></i><span>Đang truy cập</span></div>
+                <div class="number-in--sub__footer">175</div>
+            </div>
+            <div class="sub-footer--list_flex">
+                <div class="content-in--sub__footer"><i class="fa-solid fa-user-graduate icon-in--sub__footer"></i><span>SV đăng nhập</span></div>
+                <div class="number-in--sub__footer">175</div>
+            </div>
+            <div class="sub-footer--list_flex">
+                <div class="content-in--sub__footer"><i class="fa-solid fa-user-tie icon-in--sub__footer"></i><span>GV đăng nhập</span></div>
+                <div class="number-in--sub__footer">0</div>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+<script src="{{ url_for('static', filename='js/selectFloor.js') }}"></script>
+{% endblock %}
