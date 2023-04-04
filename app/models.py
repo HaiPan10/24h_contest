@@ -4,7 +4,7 @@ from datetime import datetime
 from app import db, app
 from sqlalchemy.orm import relationship
 from sqlalchemy import Integer, Column, String, ForeignKey, DateTime, Float, Enum, Text, Boolean
-from enum import Enum as UserEnum, Enum as StatusEnum
+from enum import Enum as UserEnum, Enum as StatusEnum, Enum as DayInWeekEnum
 from flask_login import UserMixin
 
 
@@ -12,6 +12,89 @@ from flask_login import UserMixin
 class BaseModel(db.Model):
     __abstract__ = True
     id = Column(Integer, primary_key=True, autoincrement=True)
+
+
+class GiangVien(BaseModel):
+    ho_gv = Column(String(50), nullable=True)
+    ten_gv = Column(String(50), nullable=True)
+    gioi_tinh = Column(String(15), nullable=True)
+    day = relationship('Day', backref='giang_vien', lazy=True)
+
+
+class PhongHoc(BaseModel):
+    ten_phong = Column(String(15), nullable=False)
+    kich_co = Column(Integer, nullable=False)
+    tinh_trang = Column(String(25), default="Tot")
+    lop_hoc = relationship('LopHoc', backref='phong_hoc', lazy=True)
+    phieu_muon_phong = relationship('PhieuMuonPhong', backref='phong_hoc', lazy=True)
+
+
+class Ca(BaseModel):
+    ten_ca = Column(String(15), nullable=False)
+    gio_bat_dau = Column(DateTime)
+    gio_ket_thuc = Column(DateTime)
+    lop_hoc = relationship('LopHoc', backref='ca', lazy=True)
+    phieu_muon = relationship('PhieuMuonPhong', backref='ca', lazy=True)
+
+
+class TaiKhoan(BaseModel):
+    dai_dien_to_chuc = Column(String(50), nullable=False)
+    ten_tai_khoan = Column(String(50), nullable=False)
+    gmail = Column(String(50), nullable=True)
+    mat_khau = Column(String(50), nullable=False)
+    so_luot = Column(Integer, default=1)
+    loai_tai_khoan = Column(String(50), nullable=False)
+    da_bi_khoa = Column(Boolean, default=False)
+    phieu_muon = relationship('PhieuMuonPhong', backref='tai_khoan', lazy=True)
+
+
+class MonHoc(BaseModel):
+    ten_mon = Column(String(50), nullable=False)
+    lop_hoc = relationship('LopHoc', backref='mon_hoc', lazy=True)
+
+
+class DayInWeek(DayInWeekEnum):
+    MON = 1
+    TUE = 2
+    WED = 3
+    THUR = 4
+    FRI = 5
+    SAT = 6
+    SUN = 7
+
+
+class LopHoc(BaseModel):
+    thu_trong_tuan = Column(Enum(DayInWeek))
+    mon_hoc_id = Column(Integer, ForeignKey(MonHoc.id), nullable=False)
+    ca_id = Column(Integer, ForeignKey(Ca.id), nullable=False)
+    phong_hoc_id = Column(Integer, ForeignKey(PhongHoc.id), nullable=False)
+    day = relationship('Day', backref="lop_hoc", lazy=True)
+
+
+class Day(BaseModel):
+    gv_id = Column(Integer, ForeignKey(GiangVien.id), nullable=False)
+    lop_hoc_id = Column(Integer, ForeignKey(LopHoc.id), nullable=False)
+
+
+class PhieuMuonPhong(BaseModel):
+    thoi_gian_dat = Column(DateTime)
+    ngay_muon = Column(DateTime)
+    ly_do = Column(Text)
+    tai_khoan_id = Column(Integer, ForeignKey(TaiKhoan.id), nullable=False)
+    ca_id = Column(Integer, ForeignKey(Ca.id), nullable=False)
+    phong_hoc_id = Column(Integer, ForeignKey(PhongHoc.id), nullable=False)
+
+
+'''
+___________________________________Old code___________________________________
+___________________________________Please Don't_______________________________
+___________________________________Remove Or Comment__________________________
+'''
+
+
+class UserRole(UserEnum):
+    USER = 1
+    ADMIN = 2
 
 
 class Categories(BaseModel):
@@ -39,11 +122,6 @@ class Books(BaseModel):
 
     def __str__(self):
         return self.book_name
-
-
-class UserRole(UserEnum):
-    USER = 1
-    ADMIN = 2
 
 
 class Status(StatusEnum):

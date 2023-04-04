@@ -7,7 +7,8 @@ from flask import flash, redirect, request, url_for
 from flask_admin.babel import gettext
 from flask_admin.model import typefmt
 from wtforms.validators import InputRequired, NumberRange
-from app.models import Categories, Books, Orders, OrderDetails, UserRole, Status
+# from app.models import Categories, Books, Orders, OrderDetails, UserRole, Status, GiangVien
+from app.models import GiangVien, MonHoc, Day, LopHoc, PhongHoc, PhieuMuonPhong, Ca, TaiKhoan, UserRole
 from app import db, app, utils, dao
 from flask_admin import Admin, BaseView, expose, AdminIndexView
 from flask_admin.contrib.sqla import ModelView
@@ -17,6 +18,61 @@ import cloudinary.uploader
 from markupsafe import Markup
 from wtforms import TextAreaField
 from wtforms.widgets import TextArea
+
+
+class GiangVienView(ModelView):
+    can_view_details = True
+    can_edit = True
+    can_delete = True
+
+
+class MonHocView(ModelView):
+    can_view_details = True
+    can_edit = True
+    can_delete = True
+
+
+class CaView(ModelView):
+    can_view_details = True
+    can_edit = True
+    can_delete = True
+
+
+class PhongHocView(ModelView):
+    can_view_details = True
+    can_edit = True
+    can_delete = True
+
+
+class TaiKhoanView(ModelView):
+    can_view_details = True
+    can_edit = True
+    can_delete = True
+
+
+class LopHocView(ModelView):
+    can_view_details = True
+    can_edit = True
+    can_delete = True
+
+
+class DayView(ModelView):
+    can_view_details = True
+    can_edit = True
+    can_delete = True
+
+
+class PhieuMuonPhongView(ModelView):
+    can_view_details = True
+    can_edit = True
+    can_delete = True
+
+
+'''
+___________________________________Old code___________________________________
+___________________________________Please Don't_______________________________
+___________________________________Remove Or Comment__________________________
+'''
 
 
 class CKTextAreaWidget(TextArea):
@@ -39,6 +95,16 @@ def upload_cloudinary(image):
     return image
 
 
+class WebBanSachAdmin(AdminIndexView):
+
+    def is_accessible(self):
+        if current_user.is_anonymous or current_user.user_role is UserRole.ADMIN:
+            return True
+        else:
+            return False
+
+
+'''
 # class InputQuantityForm(Form):
 #     import_date = DateField('Ngày nhập kho', format="%d-%m-%Y")
 #     import_quantity = IntegerField('Số lượng nhập')
@@ -216,15 +282,6 @@ class StatsView(BaseView):
             return False
 
 
-class WebBanSachAdmin(AdminIndexView):
-
-    def is_accessible(self):
-        if current_user.is_anonymous or current_user.user_role is UserRole.ADMIN:
-            return True
-        else:
-            return False
-
-
 class OrdersView(ModelView):
     can_edit = True
     can_create = False
@@ -250,12 +307,21 @@ class OrdersView(ModelView):
             return current_user.is_authenticated
         else:
             return False
+'''
 
 
 admin = Admin(app=app, name='Quản Trị Bán Sách', template_mode='bootstrap4', index_view=WebBanSachAdmin())
-admin.add_view(BooksView(Books, db.session, name='Các Sản Phẩm Sách', endpoint='admin-input'))
-admin.add_view(CategoriesView(Categories, db.session, name='Danh mục'))
-admin.add_view(InputBooksView(Books, db.session, name='Nhập kho', endpoint='admin-input-quantity'))
-admin.add_view(AdjustView(name='Thay đổi quy định'))
-admin.add_view(StatsView(name='Thống kê'))
-admin.add_view(OrdersView(Orders, db.session, name='Các Đơn Hàng'))
+# admin.add_view(BooksView(Books, db.session, name='Các Sản Phẩm Sách', endpoint='admin-input'))
+# admin.add_view(CategoriesView(Categories, db.session, name='Danh mục'))
+# admin.add_view(InputBooksView(Books, db.session, name='Nhập kho', endpoint='admin-input-quantity'))
+# admin.add_view(AdjustView(name='Thay đổi quy định'))
+# admin.add_view(StatsView(name='Thống kê'))
+# admin.add_view(OrdersView(Orders, db.session, name='Các Đơn Hàng'))
+admin.add_view(GiangVienView(GiangVien, db.session, name='Giảng viên'))
+admin.add_view(MonHocView(MonHoc, db.session, name='Môn học'))
+admin.add_view(CaView(Ca, db.session, name='Danh sách ca'))
+admin.add_view(LopHocView(LopHoc, db.session, name='Lớp học'))
+admin.add_view(PhongHocView(PhongHoc, db.session, name='Phòng học'))
+admin.add_view(TaiKhoanView(TaiKhoan, db.session, name='Tài khoản'))
+admin.add_view(DayView(Day, db.session, name='Danh sách dạy'))
+admin.add_view(PhieuMuonPhongView(PhieuMuonPhong, db.session, name='Phiếu mượn phòng'))
