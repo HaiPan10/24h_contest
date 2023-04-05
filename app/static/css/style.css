@@ -600,6 +600,8 @@ body {
     justify-content: center;
     align-items: center;
     border-radius: 5px;
+    background-color: green;
+    color: white;
 }
 
 .row-floor div {
