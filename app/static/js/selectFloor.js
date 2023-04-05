@@ -74,9 +74,13 @@ dateBook.addEventListener("change", function() {
 
 const selectCaHoc = document.getElementById("select-ca-hoc")
 selectCaHoc.addEventListener("change", function(){
-  getCaHoc(this.value)
-  console.log(this.value)
+  getCaHoc(parseInt(this.value))
 })
+
+window.onload = function(){
+  getCaHoc(parseInt(1))
+}
+
 
 function getCaHoc(caHocId){
   fetch(`/api/get_ca_hoc/${caHocId}`, {
@@ -90,7 +94,7 @@ function getCaHoc(caHocId){
   }).then(res => res.json()).then(data => {
     let startTime = document.getElementById("start-time-book")
     let endTime = document.getElementById("end-time-book")
-    startTime.value = Date.parse(data.gio_bat_dau)
-    endTime.value = Date.parse(data.gio_ket_thuc)
+    startTime.value = data.gio_bat_dau
+    endTime.value = data.gio_ket_thuc
   })
 }
