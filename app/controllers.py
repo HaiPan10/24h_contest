@@ -174,12 +174,11 @@ def register():
 @annonymous_user
 def login_my_user():
     if request.method.__eq__('POST'):
-        username = request.form['username']
-        password = request.form['password']
+        username = request.form['uname']
+        password = request.form['pwd']
         user = dao.auth_user(username=username, password=password)
         if user:
             login_user(user=user)
-
             n = request.args.get("next")
             return redirect(n if n else '/')
     return render_template('login.html')

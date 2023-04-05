@@ -37,7 +37,7 @@ class CaHoc(BaseModel):
     phieu_muon = relationship('PhieuMuonPhong', backref='ca', lazy=True)
 
 
-class TaiKhoan(BaseModel):
+class TaiKhoan(BaseModel, UserMixin):
     dai_dien_to_chuc = Column(String(50), nullable=False)
     hoTen = Column(String(50), nullable=False)
     gmail = Column(String(50), nullable=True)

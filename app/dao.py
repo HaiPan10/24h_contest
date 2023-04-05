@@ -83,9 +83,9 @@ def create_account(name, username, password, avatar):
 
 def auth_user(username, password):
     # Ma hoa password su dung ham bang
-    pw = str(hashlib.md5(password.strip().encode('utf-8')).hexdigest())
-    return UserAccount.query.filter(UserAccount.username.__eq__(username),
-                                    UserAccount.password.__eq__(pw)).first()
+    # pw = str(hashlib.md5(password.strip().encode('utf-8')).hexdigest())
+    return TaiKhoan.query.filter(TaiKhoan.mssv.__eq__(username),
+                                    TaiKhoan.mat_khau.__eq__(password)).first()
 
 
 def register(name, username, phone, password, avatar):
@@ -100,7 +100,7 @@ def get_category_name(book_id):
 
 
 def get_user_by_id(user_id):
-    return UserAccount.query.get(user_id)
+    return TaiKhoan.query.get(user_id)
 
 
 def save_receipt(cart, address, status):
