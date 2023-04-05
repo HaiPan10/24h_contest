@@ -20,7 +20,7 @@ app.add_url_rule("/dat_phong", 'book_room', controllers.book_room)
 # app.add_url_rule("/login-admin", 'login-admin', controllers.admin_login, methods=['post'])
 # app.add_url_rule("/register", 'register', controllers.register, methods=['post', 'get'])
 app.add_url_rule("/login", 'login-my-user', controllers.login_my_user, methods=['get', 'post'])
-# app.add_url_rule("/logout", 'logout-my-user', controllers.logout_my_user)
+app.add_url_rule("/logout", 'logout-my-user', controllers.logout_my_user)
 # app.add_url_rule("/admin/adjustview/change", 'adjust-rules', controllers.adjust_rules, methods=['post'])
 # app.add_url_rule("/api/cart", 'add-to-cart', controllers.add_to_cart, methods=['post'])
 # app.add_url_rule("/api/delete_cart/<product_id>", 'delete-cart', controllers.delete_cart, methods=['delete'])
@@ -38,7 +38,7 @@ app.add_url_rule("/login", 'login-my-user', controllers.login_my_user, methods=[
 # login người dùng tại đây
 @login.user_loader
 def load_user(user_id):
-    return dao.get_user_by_id(user_id)
+    return dao.get_tai_khoan_by_id(user_id)
 
 
 @app.context_processor

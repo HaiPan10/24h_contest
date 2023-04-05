@@ -325,82 +325,116 @@
         </div>
     </div>
     <div id="column-right">
-        <div id="login-success" class="border-radius__bottom">
-            <div class="sub-header flex-direction__row">
-                <div class="login-title__success"><i class="fa fa-user pr-2"></i><span class="title">ĐĂNG NHẬP</span></div>
-                <div class="login-title__success--icon flex-end"><i class="fas fa-chevron-right right"></i></div>
-            </div>
-            <div class="margin-login">
-                <div class="input-with__icon border_bottom content-login">
-                    <div class="content-login__left">Tài khoản</div>
-                    <div class="content-login__right">20510120xx</div>
+            {% if current_user.is_authenticated %}
+            <div id="login-success" class="border-radius__bottom">
+                <div class="sub-header flex-direction__row">
+                    <div class="login-title__success"><i class="fa fa-user pr-2"></i><span
+                            class="title">ĐĂNG NHẬP</span></div>
+                    <div class="login-title__success--icon flex-end"><i class="fas fa-chevron-right right"></i></div>
                 </div>
-                <div class="input-with__icon content-login">
-                    <div class="content-login__left">Họ tên</div>
-                    <div class="content-login__right">Lại Bình Phong</div>
-                </div>
-            </div>
-            <div class="btn-login__container"><button class="btn-logout"><i class="icon fas fa-sign-in-alt icon-in__button"></i>Đăng xuất</button></div>
-        </div>
-        <div id="feature-area__show flex-direction__row" class="border-radius__top">
-             <div class="sub-header border-radius__top"><i class="fas fa-cogs pr-1"></i><span class="title">TÍNH NĂNG</span></div>
-             <div class="feature-list">
-                 <div class="list_feature--member">
-                     <div class="list_content">
-                         <i class="fas fa-angle-right feature-text"></i>
-                         <span class="feature-text">Đăng ký môn học</span>
-                     </div>
-                 </div>
-                <div class="list_feature--member">
-                    <div class="list_content">
-                         <i class="fas fa-angle-right feature-text"></i>
-                         <span class="feature-text">Xem học phí</span>
+                <div class="margin-login">
+                    <div class="input-with__icon border_bottom content-login">
+                        <div class="content-login__left">Tài khoản</div>
+                        <div class="content-login__right">{{ current_user.mssv }}</div>
+                    </div>
+                    <div class="input-with__icon content-login">
+                        <div class="content-login__left">Họ tên</div>
+                        <div class="content-login__right">{{ current_user.hoTen }}</div>
                     </div>
                 </div>
-                <div class="list_feature--member">
-                    <div class="list_content">
-                         <i class="fas fa-angle-right feature-text"></i>
-                         <span class="feature-text">Đóng học phí</span>
-                     </div>
+                <div class="btn-login__container">
+                    <button class="btn-logout" onclick="location.href='/logout'"><i class="icon fas fa-sign-in-alt icon-in__button"></i>Đăng xuất</button>
                 </div>
-                <div class="list_feature--member">
-                    <div class="list_content">
-                         <i class="fas fa-angle-right feature-text"></i>
-                         <span class="feature-text">In phiếu nộp tiền</span>
-                     </div>
+            </div>
+            {% else %}
+            <div id="login-area" class="border-radius__bottom">
+                <div class="sub-header"><i class="fa fa-user pr-2"></i><span class="title">ĐĂNG NHẬP</span></div>
+                <div class="input-with__icon">
+                    <div class="icon-with__input border-radius__left"><i class="fa fa-user"></i></div>
+                    <div class="input-user__name border-radius__right"><input type="text"></div>
                 </div>
-                <div class="list_feature--member">
-                    <div class="list_content">
-                         <i class="fas fa-angle-right feature-text"></i>
-                         <span class="feature-text">Xem thời khóa biểu tuần</span>
-                     </div>
+                <div class="input-with__icon">
+                    <div class="icon-with__input border-radius__left"><i class="fa fa-lock"></i></div>
+                    <div class="input-pass__word"><input type="text"></div>
+                    <div class="icon-with__input border-radius__right"><i class="fa-solid fa-eye-slash"></i></div>
                 </div>
-                 <div class="list_feature--member">
-                    <div class="list_content">
-                         <i class="fas fa-angle-right feature-text"></i>
-                         <span class="feature-text">Xem thời khóa biểu học kỳ</span>
-                     </div>
+                <div class="btn-login__container">
+                    <button class="btn-login"><i class="icon fas fa-sign-in-alt icon-in__button"></i>Đăng nhập</button>
                 </div>
-                 <div class="list_feature--member">
-                    <div class="list_content">
-                         <i class="fas fa-angle-right feature-text"></i>
-                         <span class="feature-text">Xem lịch thi</span>
-                     </div>
+                <div class="notice-login">Chú ý: SV đăng nhập click vào nút "Đăng nhập tài khoản HCMCOU-SSO" ở bên
+                    dưới
                 </div>
-                <div class="list_feature--member">
-                    <div class="list_content">
-                         <i class="fas fa-angle-right feature-text"></i>
-                         <span class="feature-text">Xem điểm</span>
-                     </div>
+                <div class="btn-login__container">
+                    <button class="btn-login__second"><a class="btn-login-hcmou" href="/login?next=/"><i
+                            class="icon fas fa-sign-in-alt icon-in__button"></i>Đăng nhập tài khoản HCMCOU-SSO</a>
+                    </button>
                 </div>
-                <div class="list_feature--member">
-                     <div class="list_content">
-                         <i class="fas fa-angle-right feature-text"></i>
-                         <span class="feature-text">Đăng ký mượn phòng học</span>
-                     </div>
+            </div>
+            {% endif %}
+            <div id="feature-area" class="border-radius__top">
+                <div class="sub-header border-radius__top"><i class="fas fa-cogs pr-1"></i><span
+                        class="title">TÍNH NĂNG</span></div>
+                {% if current_user.is_authenticated %}
+                <div id="feature-area__show flex-direction__row" class="border-radius__top">
+                    <div class="feature-list">
+                        <div class="list_feature--member">
+                            <div class="list_content">
+                                <i class="fas fa-angle-right feature-text"></i>
+                                <span class="feature-text">Đăng ký môn học</span>
+                            </div>
+                        </div>
+                        <div class="list_feature--member">
+                            <div class="list_content">
+                                <i class="fas fa-angle-right feature-text"></i>
+                                <span class="feature-text">Xem học phí</span>
+                            </div>
+                        </div>
+                        <div class="list_feature--member">
+                            <div class="list_content">
+                                <i class="fas fa-angle-right feature-text"></i>
+                                <span class="feature-text">Đóng học phí</span>
+                            </div>
+                        </div>
+                        <div class="list_feature--member">
+                            <div class="list_content">
+                                <i class="fas fa-angle-right feature-text"></i>
+                                <span class="feature-text">In phiếu nộp tiền</span>
+                            </div>
+                        </div>
+                        <div class="list_feature--member">
+                            <div class="list_content">
+                                <i class="fas fa-angle-right feature-text"></i>
+                                <span class="feature-text">Xem thời khóa biểu tuần</span>
+                            </div>
+                        </div>
+                        <div class="list_feature--member">
+                            <div class="list_content">
+                                <i class="fas fa-angle-right feature-text"></i>
+                                <span class="feature-text">Xem thời khóa biểu học kỳ</span>
+                            </div>
+                        </div>
+                        <div class="list_feature--member">
+                            <div class="list_content">
+                                <i class="fas fa-angle-right feature-text"></i>
+                                <span class="feature-text">Xem lịch thi</span>
+                            </div>
+                        </div>
+                        <div class="list_feature--member">
+                            <div class="list_content">
+                                <i class="fas fa-angle-right feature-text"></i>
+                                <span class="feature-text">Xem điểm</span>
+                            </div>
+                        </div>
+                        <div class="list_feature--member" onclick="location.href='/dat_phong'">
+                            <div class="list_content">
+                                <i class="fas fa-angle-right feature-text"></i>
+                                <span class="feature-text">Đăng ký mượn phòng học</span>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-             </div>
-        </div>
+                {% endif %}
+            </div>
     </div>
 </div>
 
