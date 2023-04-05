@@ -31,7 +31,8 @@
                     <div class="drop-down_member">
                         <select>
                             {% for ca in list_ca_hoc %}
-                            <option value={{ ca.id }} selected>{{ ca.ten_ca }}</option>
+                            <option value={{ ca.id }}>{{ ca.ten_ca }} ({{ ca.gio_bat_dau.strftime('%H:%M') }} -
+                                {{ ca.gio_ket_thuc.strftime('%H:%M') }})</option>
                             {% endfor %}
                         </select>
                     </div>
