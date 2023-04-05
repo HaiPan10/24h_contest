@@ -80,3 +80,20 @@ function changeSelectedTime(gioBatDau, gioKetThuc){
   startTime.value = Date.parse(gioBatDau)
   endTime.value = Date.parse(gioKetThuc)
 }
+
+function getCaHoc(caHocId){
+  fetch(`/api/get_ca_hoc/${caHocId}`, {
+    method : "get",
+    body : JSON.stringify({
+      "id" : caHocID
+    }),
+    headers: {
+      'Content-Type': 'application/json'
+    }
+  }).then(res => res.json()).then(data => {
+    let startTime = document.getElementById("start-time-book")
+    let endTime = document.getElementById("end-time-book")
+    startTime.value = Date.parse(data.gio_bat_dau)
+    endTime.value = Date.parse(data.gio_ket_thuc)
+  })
+}

@@ -423,5 +423,6 @@ def book_room():
 def get_ca_hoc(id):
     ca_hoc = get_ca_hoc(id)
     return jsonify({
-        "gio_bat_dau"
+        "gio_bat_dau": ca_hoc.gio_bat_dau.strptime("%H:%M"),
+        "gio_ket_thuc": ca_hoc.gio_ket_thuc.strptime("%H:%M")
     })

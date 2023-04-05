@@ -33,6 +33,7 @@ app.add_url_rule("/logout", 'logout-my-user', controllers.logout_my_user)
 # app.add_url_rule("/orders_view", 'orders-view', controllers.user_orders_view)
 # app.add_url_rule("/api/products/product_id=<int:book_id>/comments", "comment-lists", controllers.comments)
 # app.add_url_rule("/api/products/product_id=<int:book_id>/comments", "comment-add", controllers.add_comment, methods=['post'])
+app.add_url_rule("/api/get_ca_hoc/<ca_hoc_id>", "get-ca-hoc", controllers.get_ca_hoc)
 
 
 # login người dùng tại đây
