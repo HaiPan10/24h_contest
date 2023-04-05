@@ -414,14 +414,13 @@ def check_orders_status():
 
 def book_room():
     list_ca_hoc = dao.load_ca_hoc()
-    list_phong_hoc = dao.load_room()
+    list_phong_hoc = dao.load_room(so_lau="1")
     print(list_phong_hoc)
-    print(list_ca_hoc)
     return render_template('book_room.html', list_ca_hoc=list_ca_hoc, list_phong_hoc=list_phong_hoc)
 
 
 def get_ca_hoc(id):
-    ca_hoc = get_ca_hoc(id)
+    ca_hoc = dao.get_ca_hoc(ca_hoc_id=id)
     return jsonify({
         "gio_bat_dau": ca_hoc.gio_bat_dau.strptime("%H:%M"),
         "gio_ket_thuc": ca_hoc.gio_ket_thuc.strptime("%H:%M")
