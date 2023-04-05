@@ -10,7 +10,7 @@ from app import dao, app
 #     print(dao.check_user_name('haiphan'))
 #     dao.delete_order(11)
 so_lau = "1"
-txt = "21102"
+txt = "11102"
 
 # x = re.findall("^{solau}.*".format(solau=so_lau), txt)
 # print(x)
