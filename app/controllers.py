@@ -426,8 +426,9 @@ def book_room():
                            max_phong_hoc=len(list_phong_hoc), half_phong_hoc=half_phong_hoc, floor=floor)
 
 
-def get_ca_hoc(id):
-    ca_hoc = get_ca_hoc(id)
+def get_ca_hoc(ca_hoc_id):
+    ca_hoc = dao.get_ca_hoc(ca_hoc_id=ca_hoc_id)
     return jsonify({
-        "gio_bat_dau"
+        "gio_bat_dau": ca_hoc.gio_bat_dau.strftime("%H:%M"),
+        "gio_ket_thuc": ca_hoc.gio_ket_thuc.strftime("%H:%M")
     })
