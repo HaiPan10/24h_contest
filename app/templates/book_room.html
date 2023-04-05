@@ -30,15 +30,18 @@
                     </div>
                     <div class="drop-down_member">
                         <select>
-                            <option value="option1" selected>Ca nửa buổi sáng 1 (7h - 9h)</option>
-                            <option value="option2">Ca buổi sáng 2 (9h - 11h)</option>
-                            <option value="option3">Ca nửa buổi chiều 1 (13h - 15h)</option>
-                            <option value="option4">Ca nửa buổi chiều 2 (15h - 17h)</option>
-                            <option value="option5">Ca sáng (7h - 11h)</option>
-                            <option value="option6">Ca chiều (13h - 17h)</option>
-                            <option value="option7">Ca tối (18h - 20h)</option>
-                            <option value="option8">Ca ngày 1 (7h - 17h)</option>
-                            <option value="option9">Ca ngày 2 (7h - 20h)</option>
+<!--                            <option value="option1" selected>Ca nửa buổi sáng 1 (7h - 9h)</option>-->
+<!--                            <option value="option2">Ca buổi sáng 2 (9h - 11h)</option>-->
+<!--                            <option value="option3">Ca nửa buổi chiều 1 (13h - 15h)</option>-->
+<!--                            <option value="option4">Ca nửa buổi chiều 2 (15h - 17h)</option>-->
+<!--                            <option value="option5">Ca sáng (7h - 11h)</option>-->
+<!--                            <option value="option6">Ca chiều (13h - 17h)</option>-->
+<!--                            <option value="option7">Ca tối (18h - 20h)</option>-->
+<!--                            <option value="option8">Ca ngày 1 (7h - 17h)</option>-->
+<!--                            <option value="option9">Ca ngày 2 (7h - 20h)</option>-->
+                            {% foreach ca in list_ca_hoc %}
+                            <option value={{ ca.id }} selected>{{ ca.ten_ca }}</option>
+                            {% endfor %}
                         </select>
                     </div>
                 </div>

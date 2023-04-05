@@ -412,4 +412,5 @@ def check_orders_status():
 
 
 def book_room():
-    return render_template('book_room.html')
+    list_ca_hoc = dao.load_ca_hoc()
+    return render_template('book_room.html', list_ca_hoc=list_ca_hoc)

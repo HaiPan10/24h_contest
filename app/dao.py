@@ -269,3 +269,7 @@ def load_room(ca_id, so_lau):
 
 def get_tai_khoan_by_id(user_id):
     return TaiKhoan.query.get(user_id)
+
+
+def load_ca_hoc():
+    return CaHoc.query.all()
