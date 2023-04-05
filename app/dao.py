@@ -1,10 +1,12 @@
 from datetime import datetime, timedelta
+import re
 
 from flask_login import current_user
 from sqlalchemy import func, update, and_, cast, Integer, extract, event, DDL
 from sqlalchemy.exc import DataError
 
-from app.models import UserAccount, Books, Categories, Orders, OrderDetails, UserRole, UserAccount, Comment, Status
+from app.models import UserAccount, Books, Categories, Orders, OrderDetails, UserRole, UserAccount, Comment, Status, \
+    PhongHoc, CaHoc
 from app import db, utils, app
 import hashlib
 
@@ -247,3 +249,19 @@ def delete_order_schedule():
 #                 CALL delete_order({0}, {2})
 #             '''.format(target.id, rules['delete_time'], target.status.value))
 #     connection.execute(delete_order_event)
+
+'''
+___________________________________New code___________________________________
+___________________________________In here____________________________________
+'''
+
+
+def load_room(ca_id, so_lau):
+    # if ca_id:
+    #     query = Phong.query.join(CaHoc, PhongHoc.id.__eq__(CaHoc.id))
+    # else:
+    query = PhongHoc.query
+    if so_lau:
+        query.filter(PhongHoc.ten_phong.startswith(so_lau))
+
+    return query.all()
