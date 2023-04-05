@@ -578,6 +578,8 @@ body {
 .floor-container {
     display: flex;
     flex-direction: row;
+    justify-content: center;
+    display-items: center;
 }
 
 .floor-container {

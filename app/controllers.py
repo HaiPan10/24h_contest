@@ -414,10 +414,16 @@ def check_orders_status():
 
 def book_room():
     list_ca_hoc = dao.load_ca_hoc()
-    list_phong_hoc = dao.load_room(so_lau="0")
-    print(list_phong_hoc)
-    print(list_ca_hoc)
-    return render_template('book_room.html', list_ca_hoc=list_ca_hoc, list_phong_hoc=list_phong_hoc, max_phong_hoc = len(list_phong_hoc))
+    floor = request.args.get('select_floor')
+    if floor is None:
+        floor = 1
+    list_phong_hoc = dao.load_room(so_lau=floor)
+    if (len(list_phong_hoc) % 2) != 0:
+        half_phong_hoc = (int)(len(list_phong_hoc) / 2) + 1
+    else:
+        half_phong_hoc = (int)(len(list_phong_hoc) / 2)
+    return render_template('book_room.html', list_ca_hoc=list_ca_hoc, list_phong_hoc=list_phong_hoc,
+                           max_phong_hoc=len(list_phong_hoc), half_phong_hoc=half_phong_hoc, floor=floor)
 
 
 def get_ca_hoc(id):
