@@ -16,6 +16,7 @@ import cloudinary.uploader
 
 
 # Định nghĩa đường dẫn
+# 24h url
 def home():
     # số sản phẩm hiện trong 1 trang
     # max_product_card = 8
@@ -191,21 +192,21 @@ def logout_my_user():
     return redirect('/')
 
 
-def adjust_rules():
-    quantity_import = request.form['quantity_import']
-    quantity_in_stocks = request.form['quantity_in_stocks']
-    delete_time = request.form['delete_time']
-    rules = {
-        'quantity_import': quantity_import,
-        'quantity_in_stocks': quantity_in_stocks,
-        'delete_time': delete_time
-    }
-    utils.write_json('data/adjust_rules.json', file=rules)
-    # Cập nhật lại thông tin của input books view
-    for view in ad.admin.__getattribute__('_views'):
-        if isinstance(view, InputBooksView):
-            view.read_rules()
-    return redirect("/admin")
+# def adjust_rules():
+#     quantity_import = request.form['quantity_import']
+#     quantity_in_stocks = request.form['quantity_in_stocks']
+#     delete_time = request.form['delete_time']
+#     rules = {
+#         'quantity_import': quantity_import,
+#         'quantity_in_stocks': quantity_in_stocks,
+#         'delete_time': delete_time
+#     }
+#     utils.write_json('data/adjust_rules.json', file=rules)
+#     # Cập nhật lại thông tin của input books view
+#     for view in ad.admin.__getattribute__('_views'):
+#         if isinstance(view, InputBooksView):
+#             view.read_rules()
+#     return redirect("/admin")
 
 
 def add_to_cart():

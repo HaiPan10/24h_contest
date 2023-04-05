@@ -264,9 +264,8 @@ def load_room(ca_id, so_lau):
         query = PhongHoc.query
     if so_lau:
         query.filter(PhongHoc.ten_phong.startswith(so_lau))
-
     return query.all()
 
 
-def get_user_id(id):
-    return TaiKhoan.query.get(id)
+def get_tai_khoan_by_id(user_id):
+    return TaiKhoan.query.get(user_id)

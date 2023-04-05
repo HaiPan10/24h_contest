@@ -175,7 +175,6 @@ class Comment(BaseModel):
     book_id = Column(Integer, ForeignKey(Books.id), nullable=False)
 
 
-
 if __name__ == '__main__':
     with app.app_context():
         pass
