@@ -256,14 +256,14 @@ ___________________________________In here____________________________________
 '''
 
 
-def load_room(ca_id=None, so_lau=None):
-    if ca_id:
-        query = PhongHoc.query.join(CaHoc, PhongHoc.id.__eq__(CaHoc.id)) \
-            .filter(CaHoc.id.__eq__(ca_id))
-    else:
-        query = PhongHoc.query
+def load_room(so_lau):
+    # if ca_id:
+    #     query = PhongHoc.query.join(CaHoc, PhongHoc.id.__eq__(CaHoc.id)) \
+    #         .filter(CaHoc.id.__eq__(ca_id))
+    # else:
+    query = PhongHoc.query
     if so_lau:
-        query.filter(PhongHoc.ten_phong.startswith(so_lau))
+        query = query.filter(PhongHoc.ten_phong.startswith(so_lau))
     return query.all()
 
 
