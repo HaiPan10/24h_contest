@@ -6,7 +6,7 @@ from sqlalchemy import func, update, and_, cast, Integer, extract, event, DDL
 from sqlalchemy.exc import DataError
 
 from app.models import UserAccount, Books, Categories, Orders, OrderDetails, UserRole, UserAccount, Comment, Status, \
-    PhongHoc, CaHoc
+    PhongHoc, CaHoc, TaiKhoan
 from app import db, utils, app
 import hashlib
 
@@ -259,7 +259,7 @@ ___________________________________In here____________________________________
 def load_room(ca_id, so_lau):
     if ca_id:
         query = PhongHoc.query.join(CaHoc, PhongHoc.id.__eq__(CaHoc.id)) \
-                .filter(CaHoc.id.__eq__(ca_id))
+            .filter(CaHoc.id.__eq__(ca_id))
     else:
         query = PhongHoc.query
     if so_lau:
@@ -267,5 +267,6 @@ def load_room(ca_id, so_lau):
 
     return query.all()
 
-# def get_user_id(user_id):
-#     return db.session.query()
+
+def get_user_id(id):
+    return TaiKhoan.query.get(id)
