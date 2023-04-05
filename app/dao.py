@@ -256,7 +256,7 @@ ___________________________________In here____________________________________
 '''
 
 
-def load_room(ca_id, so_lau):
+def load_room(ca_id=None, so_lau=None):
     if ca_id:
         query = PhongHoc.query.join(CaHoc, PhongHoc.id.__eq__(CaHoc.id)) \
             .filter(CaHoc.id.__eq__(ca_id))
