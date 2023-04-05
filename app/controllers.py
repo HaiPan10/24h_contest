@@ -414,4 +414,11 @@ def check_orders_status():
 
 def book_room():
     list_ca_hoc = dao.load_ca_hoc()
-    return render_template('book_room.html', list_ca_hoc=list_ca_hoc)
+    list_phong_hoc = dao.load_room()
+    return render_template('book_room.html', list_ca_hoc=list_ca_hoc, list_phong_hoc=list_phong_hoc)
+
+def get_ca_hoc(id):
+    ca_hoc = get_ca_hoc(id)
+    return jsonify({
+        "gio_bat_dau"
+    })

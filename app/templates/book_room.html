@@ -29,9 +29,10 @@
                         </select>
                     </div>
                     <div class="drop-down_member">
-                        <select>
+                        <select id="select-ca-hoc">
                             {% for ca in list_ca_hoc %}
-                            <option value={{ ca.id }}>{{ ca.ten_ca }} ({{ ca.gio_bat_dau.strftime('%H:%M') }} -
+                            <option
+                            value="{{ ca.id }}">{{ ca.ten_ca }} ({{ ca.gio_bat_dau.strftime('%H:%M') }} -
                                 {{ ca.gio_ket_thuc.strftime('%H:%M') }})</option>
                             {% endfor %}
                         </select>
@@ -285,11 +286,11 @@
                             </div>
                             <div class="inform-detail__col" id="detail-time_start">
                                 <div class="inform-detail_title">Thời gian bắt đầu: </div>
-                                <div><input readonly class="detail-input" type="time"></div>
+                                <div><input id="start-time-book" readonly class="detail-input" type="time"></div>
                             </div>
                             <div class="inform-detail__col" id="detail-time_end">
                                 <div class="inform-detail_title">Thời gian kết thúc: </div>
-                                <div><input readonly class="detail-input" type="time"></div>
+                                <div><input id="end-time-book" readonly class="detail-input" type="time"></div>
                             </div>
                         </div>
                         <div class="inform-detail__row">

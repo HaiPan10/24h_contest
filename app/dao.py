@@ -273,3 +273,7 @@ def get_tai_khoan_by_id(user_id):
 
 def load_ca_hoc():
     return CaHoc.query.all()
+
+
+def get_ca_hoc(ca_hoc_id):
+    return CaHoc.query.get(ca_hoc_id)
