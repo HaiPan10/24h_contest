@@ -31,14 +31,15 @@
                     <div class="drop-down_member">
                         <select>
                             {% for ca in list_ca_hoc %}
-                            <option value={{ ca.id }} selected>{{ ca.ten_ca }}</option>
+                            <option value={{ ca.id }}>{{ ca.ten_ca }} ({{ ca.gio_bat_dau.strftime('%H:%M') }} -
+                                {{ ca.gio_ket_thuc.strftime('%H:%M') }})</option>
                             {% endfor %}
                         </select>
                     </div>
                 </div>
                 <div class="drop-down_row sub-row">
                     <div class="drop-down_member only-member">
-                        <span class="drop-down_title">Ngày đặt phòng: </span><input type="date" name="date">
+                        <span class="drop-down_title">Ngày đặt phòng: </span><input id="date-book" type="date" name="date">
                     </div>
                 </div>
                 <div class="primary-row">
@@ -258,18 +259,18 @@
                         <div class="inform-detail__row">
                             <div class="inform-detail__col" id="detail-name">
                                 <div class="inform-detail_title">Họ tên người đặt phòng:</div>
-                                <div><input class="detail-input" type="text"></div>
+                                <div><input readonly value="{{ current_user.ho_ten }}" class="detail-input" type="text"></div>
                             </div>
                             <div class="inform-detail__col" id="detail-organization">
                                 <div class="inform-detail_title">Tổ chức đại diện:</div>
-                                <div><input class="detail-input" type="text"></div>
+                                <div><input readonly value="{{ current_user.dai_dien_to_chuc }}" class="detail-input" type="text"></div>
                             </div>
                         </div>
 
                         <div class="inform-detail__row">
                             <div class="inform-detail__col" id="detail-phone_number">
                                 <div class="inform-detail_title">Số điện thoại: </div>
-                                <div><input class="detail-input" type="text"></div>
+                                <div><input readonly value="{{ current_user.so_dien_thoai }}" class="detail-input" type="text"></div>
                             </div>
                             <div class="inform-detail__col" id="detail-room_chosen">
                                 <div class="inform-detail_title">Phòng đăng ký: </div>
@@ -280,15 +281,15 @@
                         <div class="inform-detail__row">
                             <div class="inform-detail__col" id="detail-date_order">
                                 <div class="inform-detail_title">Ngày mượn: </div>
-                                <div><input class="detail-input" type="date"></div>
+                                <div><input readonly id="date-book-info" class="detail-input" type="date"></div>
                             </div>
                             <div class="inform-detail__col" id="detail-time_start">
                                 <div class="inform-detail_title">Thời gian bắt đầu: </div>
-                                <div><input class="detail-input" type="time"></div>
+                                <div><input readonly class="detail-input" type="time"></div>
                             </div>
                             <div class="inform-detail__col" id="detail-time_end">
                                 <div class="inform-detail_title">Thời gian kết thúc: </div>
-                                <div><input class="detail-input" type="time"></div>
+                                <div><input readonly class="detail-input" type="time"></div>
                             </div>
                         </div>
                         <div class="inform-detail__row">
