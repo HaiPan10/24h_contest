@@ -30,7 +30,7 @@ class PhongHoc(BaseModel):
 
 
 class CaHoc(BaseModel):
-    ten_ca = Column(String(15), nullable=False)
+    ten_ca = Column(String(100), nullable=False)
     gio_bat_dau = Column(Time)
     gio_ket_thuc = Column(Time)
     lop_hoc = relationship('LopHoc', backref='ca', lazy=True)
@@ -173,6 +173,7 @@ class Comment(BaseModel):
     created_date = Column(DateTime, default=datetime.now())
     user_account_id = Column(Integer, ForeignKey(UserAccount.id), nullable=False)
     book_id = Column(Integer, ForeignKey(Books.id), nullable=False)
+
 
 
 if __name__ == '__main__':
