@@ -29,7 +29,7 @@ class PhongHoc(BaseModel):
     phieu_muon_phong = relationship('PhieuMuonPhong', backref='phong_hoc', lazy=True)
 
 
-class Ca(BaseModel):
+class CaHoc(BaseModel):
     ten_ca = Column(String(15), nullable=False)
     gio_bat_dau = Column(DateTime)
     gio_ket_thuc = Column(DateTime)
@@ -39,11 +39,12 @@ class Ca(BaseModel):
 
 class TaiKhoan(BaseModel):
     dai_dien_to_chuc = Column(String(50), nullable=False)
-    ten_tai_khoan = Column(String(50), nullable=False)
+    hoTen = Column(String(50), nullable=False)
     gmail = Column(String(50), nullable=True)
     mat_khau = Column(String(50), nullable=False)
     so_luot = Column(Integer, default=1)
     loai_tai_khoan = Column(String(50), nullable=False)
+    mssv = Column(String(10), nullable=False)
     da_bi_khoa = Column(Boolean, default=False)
     phieu_muon = relationship('PhieuMuonPhong', backref='tai_khoan', lazy=True)
 
@@ -66,7 +67,7 @@ class DayInWeek(DayInWeekEnum):
 class LopHoc(BaseModel):
     thu_trong_tuan = Column(Enum(DayInWeek))
     mon_hoc_id = Column(Integer, ForeignKey(MonHoc.id), nullable=False)
-    ca_id = Column(Integer, ForeignKey(Ca.id), nullable=False)
+    ca_id = Column(Integer, ForeignKey(CaHoc.id), nullable=False)
     phong_hoc_id = Column(Integer, ForeignKey(PhongHoc.id), nullable=False)
     day = relationship('Day', backref="lop_hoc", lazy=True)
 
@@ -81,7 +82,7 @@ class PhieuMuonPhong(BaseModel):
     ngay_muon = Column(DateTime)
     ly_do = Column(Text)
     tai_khoan_id = Column(Integer, ForeignKey(TaiKhoan.id), nullable=False)
-    ca_id = Column(Integer, ForeignKey(Ca.id), nullable=False)
+    ca_id = Column(Integer, ForeignKey(CaHoc.id), nullable=False)
     phong_hoc_id = Column(Integer, ForeignKey(PhongHoc.id), nullable=False)
 
 
