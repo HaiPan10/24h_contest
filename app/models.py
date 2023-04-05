@@ -3,7 +3,7 @@ from datetime import datetime
 
 from app import db, app
 from sqlalchemy.orm import relationship
-from sqlalchemy import Integer, Column, String, ForeignKey, DateTime, Float, Enum, Text, Boolean
+from sqlalchemy import Integer, Column, String, ForeignKey, DateTime, Float, Enum, Text, Boolean, Date, Time
 from enum import Enum as UserEnum, Enum as StatusEnum, Enum as DayInWeekEnum
 from flask_login import UserMixin
 
@@ -31,8 +31,8 @@ class PhongHoc(BaseModel):
 
 class CaHoc(BaseModel):
     ten_ca = Column(String(15), nullable=False)
-    gio_bat_dau = Column(DateTime)
-    gio_ket_thuc = Column(DateTime)
+    gio_bat_dau = Column(Time)
+    gio_ket_thuc = Column(Time)
     lop_hoc = relationship('LopHoc', backref='ca', lazy=True)
     phieu_muon = relationship('PhieuMuonPhong', backref='ca', lazy=True)
 
@@ -79,7 +79,7 @@ class Day(BaseModel):
 
 class PhieuMuonPhong(BaseModel):
     thoi_gian_dat = Column(DateTime)
-    ngay_muon = Column(DateTime)
+    ngay_muon = Column(Date)
     ly_do = Column(Text)
     tai_khoan_id = Column(Integer, ForeignKey(TaiKhoan.id), nullable=False)
     ca_id = Column(Integer, ForeignKey(CaHoc.id), nullable=False)

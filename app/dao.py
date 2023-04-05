@@ -257,11 +257,15 @@ ___________________________________In here____________________________________
 
 
 def load_room(ca_id, so_lau):
-    # if ca_id:
-    #     query = Phong.query.join(CaHoc, PhongHoc.id.__eq__(CaHoc.id))
-    # else:
-    query = PhongHoc.query
+    if ca_id:
+        query = PhongHoc.query.join(CaHoc, PhongHoc.id.__eq__(CaHoc.id)) \
+                .filter(CaHoc.id.__eq__(ca_id))
+    else:
+        query = PhongHoc.query
     if so_lau:
         query.filter(PhongHoc.ten_phong.startswith(so_lau))
 
     return query.all()
+
+# def get_user_id(user_id):
+#     return db.session.query()
