@@ -16,7 +16,8 @@
         <div class="modal_overlay"></div>
 
         <div class="modal_body">
-            <div class="auth-form">
+            <form action="" method="post" novalidate="novalidate">
+                <div class="auth-form">
                 <div class="auth-form-img">
                     <img class="img-auth-form" src=" {{ url_for('static', filename='images/logoOU.png') }}" alt="">
                 </div>
@@ -40,16 +41,16 @@
                     <div class="container">
                         <form action="/action_page.php" class="was-validated">
                           <div class="form-group">
-                            <input type="text" class="form-control" id="uname" placeholder="Tên đăng nhập" name="uname" required>
+                            <input type="text" class="form-control" id="uname" placeholder="Tài khoản" name="uname" required>
                           </div>
 
                           <div class="form-group">
-                            <input type="password" class="form-control" id="pwd" placeholder="Mật khẩu" name="pswd" required>
+                            <input type="password" class="form-control" id="pwd" placeholder="Mật khẩu" name="pwd" required>
 
                           </div>
 
                           <div class="d-grid gap-2">
-                            <button class="btn btn-primary text-dark" type="button"><a href="/dat_phong" class="btn-login-hcmou">Đăng nhập</a></button>
+                            <button class="btn btn-primary text-dark" type="submit"><a class="btn-login-hcmou">Đăng nhập</a></button>
                           </div>
                         </form>
                       </div>
@@ -74,6 +75,7 @@
                     <p class="end-title">HCMCOU - SSO, Phiên bản 20220402</p>
                 </div>
             </div>
+            </form>
         </div>
     </div>
 </body>
