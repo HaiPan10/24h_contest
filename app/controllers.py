@@ -411,4 +411,5 @@ def check_orders_status():
 
 
 def book_room():
+    # user = dao.get_tai
     return render_template('book_room.html')
