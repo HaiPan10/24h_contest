@@ -1,5 +1,6 @@
 # Định tuyến tới biến app trang init.py
 import requests
+from datetime import date, timedelta
 from sqlalchemy.exc import DataError
 
 # from app.admin import InputBooksView
@@ -422,8 +423,16 @@ def book_room():
         half_phong_hoc = (int)(len(list_phong_hoc) / 2) + 1
     else:
         half_phong_hoc = (int)(len(list_phong_hoc) / 2)
+    ca = request.args.get('select-ca-hoc')
+    if ca is None:
+        ca = 1
+
+    date_book = request.args.get('date-book')
+    if date_book is None:
+        date_book = date.today() + timedelta(days=1)
     return render_template('book_room.html', list_ca_hoc=list_ca_hoc, list_phong_hoc=list_phong_hoc,
-                           max_phong_hoc=len(list_phong_hoc), half_phong_hoc=half_phong_hoc, floor=floor)
+                           max_phong_hoc=len(list_phong_hoc), half_phong_hoc=half_phong_hoc,
+                           floor=floor, ca=ca, ngay_dat=date_book)
 
 
 def get_ca_hoc(ca_hoc_id):

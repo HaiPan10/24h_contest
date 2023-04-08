@@ -17,8 +17,10 @@
                             <option value="option2" selected>Nguyễn Kiệm</option>
                         </select>
                     </div>
-                    <form action="">
-                        <div class="drop-down_member">
+                    <div class="drop-down_member">
+                        <form action="">
+                            <input type="hidden" name="date-book" value="{{ ngay_dat }}">
+                            <input type="hidden" name="select-ca-hoc" value="{{ ca }}">
                             <select id="select_floor" name="select_floor" onchange="this.form.submit()">
                                 <option value="0" selected>Lầu trệt</option>
                                 <option value="1">Lầu 1</option>
@@ -27,21 +29,30 @@
                                 <option value="4">Lầu 4</option>
                                 <option value="5">Lầu 5</option>
                             </select>
-                        </div>
-                    </form>
+                        </form>
+                    </div>
                     <div class="drop-down_member">
-                        <select id="select-ca-hoc">
-                            {% for ca in list_ca_hoc %}
-                            <option
-                            value="{{ ca.id }}">{{ ca.ten_ca }} ({{ ca.gio_bat_dau.strftime('%H:%M') }} -
-                                {{ ca.gio_ket_thuc.strftime('%H:%M') }})</option>
-                            {% endfor %}
-                        </select>
+                        <form action="">
+                            <input type="hidden" name="select_floor" value="{{ floor }}">
+                            <input type="hidden" name="date-book" value="{{ ngay_dat }}">
+                            <span class="drop-down_title">Ca:</span>
+                            <select id="select-ca-hoc" name="select-ca-hoc" onchange="this.form.submit()">
+                                {% for ca in list_ca_hoc %}
+                                <option
+                                value="{{ ca.id }}">{{ ca.ten_ca }} ({{ ca.gio_bat_dau.strftime('%H:%M') }} -
+                                    {{ ca.gio_ket_thuc.strftime('%H:%M') }})</option>
+                                {% endfor %}
+                            </select>
+                        </form>
                     </div>
                 </div>
                 <div class="drop-down_row sub-row">
                     <div class="drop-down_member only-member">
-                        <span class="drop-down_title">Ngày đặt phòng: </span><input id="date-book" type="date" name="date">
+                        <form action="">
+                            <input type="hidden" name="select_floor" value="{{ floor }}">
+                            <input type="hidden" name="select-ca-hoc" value="{{ ca }}">
+                            <span class="drop-down_title">Ngày đặt phòng: </span><input id="date-book" type="date" name="date-book" onchange="this.form.submit()" value="{{ ngay_dat }}">
+                        </form>
                     </div>
                 </div>
                 <div class="primary-row">
@@ -61,7 +72,7 @@
                                     <div class="empty-block"></div>
                                 {% endif %}
                                 {% if list_phong_hoc[max_phong_hoc - i] %}
-                                    <div class="row-floor">{{  list_phong_hoc[max_phong_hoc - i].ten_phong }}</div>
+                                    <div class="row-floor">{{ list_phong_hoc[max_phong_hoc - i].ten_phong }}</div>
                                 {% endif %}
                                 {% if i == 0 or i == half_phong_hoc - 1 %}
                                     <div class="half-empty_block"></div>
@@ -109,7 +120,7 @@
                         <div class="inform-detail__row">
                             <div class="inform-detail__col" id="detail-phone_number">
                                 <div class="inform-detail_title">Số điện thoại: </div>
-                                <div><input readonly value="{{ current_user.so_dien_thoai }}" class="detail-input" type="text"></div>
+                                <div><input readonly class="detail-input" type="text"></div>
                             </div>
                             <div class="inform-detail__col" id="detail-room_chosen">
                                 <div class="inform-detail_title">Phòng đăng ký: </div>
@@ -121,6 +132,7 @@
                             <div class="inform-detail__col" id="detail-date_order">
                                 <div class="inform-detail_title">Ngày mượn: </div>
                                 <div><input readonly id="date-book-info" class="detail-input" type="date"></div>
+                                <div></div>
                             </div>
                             <div class="inform-detail__col" id="detail-time_start">
                                 <div class="inform-detail_title">Thời gian bắt đầu: </div>
@@ -292,5 +304,6 @@
 <script src="{{ url_for('static', filename='js/selectFloor.js') }}"></script>
 <script>
     document.getElementById('select_floor').value= {{ floor }}
+    document.getElementById('select-ca-hoc').value= {{ ca }}
 </script>
 {% endblock %}
