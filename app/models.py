@@ -47,6 +47,7 @@ class TaiKhoan(BaseModel, UserMixin):
     dai_dien_to_chuc = Column(String(50), nullable=False)
     ho_ten = Column(String(50), nullable=False)
     gmail = Column(String(50), nullable=True)
+    so_dien_thoai = Column(String(10), nullable=True)
     mat_khau = Column(String(50), nullable=False)
     so_luot = Column(Integer, default=1)
     loai_tai_khoan = Column(String(50), nullable=False)

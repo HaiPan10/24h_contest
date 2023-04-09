@@ -4,13 +4,13 @@ dateBook.addEventListener("change", function() {
   dateBookInfo.value = dateBook.value
 })
 
-const selectCaHoc = document.getElementById("select-ca-hoc")
-selectCaHoc.addEventListener("change", function(){
-  getCaHoc(parseInt(this.value))
-})
+// const selectCaHoc = document.getElementById("select-ca-hoc")
+// selectCaHoc.addEventListener("change", function(){
+//  getCaHoc(parseInt(this.value))
+// })
 
 window.onload = function(){
-  getCaHoc(parseInt(1))
+ getCaHoc(parseInt(1))
 }
 
 

@@ -120,7 +120,7 @@
                         <div class="inform-detail__row">
                             <div class="inform-detail__col" id="detail-phone_number">
                                 <div class="inform-detail_title">Số điện thoại: </div>
-                                <div><input readonly class="detail-input" type="text"></div>
+                                <div><input readonly value = '{{ current_user.so_dien_thoai }}' class="detail-input" type="text"></div>
                             </div>
                             <div class="inform-detail__col" id="detail-room_chosen">
                                 <div class="inform-detail_title">Phòng đăng ký: </div>
@@ -303,7 +303,10 @@
 </div>
 <script src="{{ url_for('static', filename='js/selectFloor.js') }}"></script>
 <script>
-    document.getElementById('select_floor').value= {{ floor }}
-    document.getElementById('select-ca-hoc').value= {{ ca }}
+    document.getElementById('select_floor').value= parseInt('{{ floor }}')
+    document.getElementById('select-ca-hoc').value= parseInt('{{ ca }}')
+    window.onload = function(){
+        getCaHoc(parseInt('{{ ca }}'))
+    }
 </script>
 {% endblock %}
