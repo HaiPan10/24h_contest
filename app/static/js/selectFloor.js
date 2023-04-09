@@ -9,10 +9,6 @@ dateBook.addEventListener("change", function() {
 //  getCaHoc(parseInt(this.value))
 // })
 
-window.onload = function(){
- getCaHoc(parseInt(1))
-}
-
 
 function getCaHoc(caHocId){
   fetch(`/api/get_ca_hoc/${caHocId}`, {
