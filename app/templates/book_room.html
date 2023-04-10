@@ -66,18 +66,31 @@
                                     <div class="half-empty_block"></div>
                                 {% endif %}
                                 {% if list_phong_hoc[i] %}
-                                    <div class="row-floor">{{  list_phong_hoc[i].ten_phong }}</div>
+                                    <div class="row-floor" id="room {{ list_phong_hoc[i].id }}">{{  list_phong_hoc[i].ten_phong }}</div>
                                 {% endif %}
                                 {% if i != 0 and i != half_phong_hoc - 1 %}
                                     <div class="empty-block"></div>
                                 {% endif %}
                                 {% if list_phong_hoc[max_phong_hoc - i] %}
-                                    <div class="row-floor">{{ list_phong_hoc[max_phong_hoc - i].ten_phong }}</div>
+                                    <div class="row-floor" id="room {{ list_phong_hoc[max_phong_hoc - i].id }}">{{ list_phong_hoc[max_phong_hoc - i].ten_phong }}</div>
                                 {% endif %}
                                 {% if i == 0 or i == half_phong_hoc - 1 %}
                                     <div class="half-empty_block"></div>
                                 {% endif %}
                             </div>
+                        {% endfor %}
+                        {% for i in range(max_phong_hoc) %}
+                            {% if list_phong_hoc[i].tinh_trang.value == 2 %}
+                                <script>
+                                    var d = document.getElementById("room {{ list_phong_hoc[i].id }}");
+                                    d.className += " color-red";
+                                </script>
+                            {% else %}
+                                <script>
+                                    var d = document.getElementById("room {{ list_phong_hoc[i].id }}");
+                                    d.className += " color-green";
+                                </script>
+                            {% endif %}
                         {% endfor %}
                     </div>
                 </div>
