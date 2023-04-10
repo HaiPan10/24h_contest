@@ -491,6 +491,22 @@ body {
     color: white;
 }
 
+.btn-map_room{
+    background-color: var(--primary-background__color);
+    color:white;
+    border:none;
+    height: 36px;
+    margin-bottom: 16px;
+    margin-left:32px;
+}
+
+.btn-map_room:hover{
+    opacity:0.7;
+    cursor:pointer;
+
+}
+
+
 .icon {
     padding-right: 5px;
 }
@@ -518,7 +534,7 @@ body {
 .drop-down_member input {
     padding: 8px;
     border-radius: 5px;
-    border-color: var(--primary-background__color);
+    border-color: #cccccc;
     color: var(--primary-background__color);
 }
 
@@ -544,6 +560,7 @@ body {
     display: flex;
     flex-direction: row;
     padding: 0px 10px;
+    margin-top:8px;
 }
 
 .color-tag {
@@ -557,6 +574,11 @@ body {
 
 .color-green {
     background-color: #33cc33;
+}
+
+.color-green:hover {
+    background-color: green;
+    cursor: pointer;
 }
 
 .color-red {
@@ -577,7 +599,7 @@ body {
 
 .floor-container {
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     justify-content: center;
     display-items: center;
 }
@@ -588,23 +610,29 @@ body {
 }
 
 .col-floor {
-    height: 90%;
-    width: 16%;
-    display: flex;
-    flex-direction: column;
-    margin: 5px;
-}
-
-.row-floor {
-    width: 90%;
-    height: 30%;
-    border: 1px solid black;
-    margin: 5px;
+    height: 50%;
+    width: 12%;
+    border: 1px solid ;
+    border-radius: 5px;
     display: flex;
     justify-content: center;
     align-items: center;
-    border-radius: 5px;
+}
+
+.row-floor {
+    display: flex;
+    width: 100%;
+    height: 50%;
+    margin: 5px;
     color: white;
+    flex-direction: row;
+    justify-content: center;
+    display-items: center;
+}
+
+
+.floor-up div {
+    align-self: flex-end;
 }
 
 .row-floor div {
@@ -633,16 +661,17 @@ body {
 }
 
 .order-detail {
-    height: 80%;
+    height: 90%;
     border: 1px solid var(--primary-background__color);
     border-radius: 5px;
-    margin: 50px 50px;
+    margin: 40px 50px;
 }
 
 .order-title {
     padding: 10px;
     text-align: center;
     font-size: 20px;
+    color: var(--primary-background__color);
 }
 
 .inform-detail__row {
@@ -679,14 +708,16 @@ body {
 }
 
 .inform-detail_title {
-    font-size: small;
-    font-weight: bold;
+    font-size: inherit;
+    color: var(--primary-background__color);
+    padding-bottom: 2px;
 }
 
 .detail-input {
     padding: 4px;
     border-radius: 5px;
     border-color: var(--primary-background__color);
+    color: var(--primary-background__color);
 }
 
 .alert-detail_title {
@@ -697,6 +728,7 @@ body {
 
 textarea {
     width: 100%;
+    padding-right: 10px;
 }
 
 .btn {
@@ -714,9 +746,20 @@ textarea {
 #btn-save_order {
     background-color: var(--primary-background__color);
     color: white;
+    border:white;
+    cursor:pointer;
+}
+#btn-save_order:hover{
+    opacity:0.7;
 }
 
 #btn-submit {
     background-color: green;
     color: white;
+    border: white;
 }
+#btn-submit:hover {
+    opacity: 0.7;
+    cursor:pointer;
+}
+

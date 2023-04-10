@@ -43,9 +43,14 @@
                                     {{ ca.gio_ket_thuc.strftime('%H:%M') }})</option>
                                 {% endfor %}
                             </select>
+
                         </form>
                     </div>
+
                 </div>
+
+
+
                 <div class="drop-down_row sub-row">
                     <div class="drop-down_member only-member">
                         <form action="">
@@ -57,28 +62,17 @@
                 </div>
                 <div class="primary-row">
                     <div id="floor-container" class="floor-container">
-                        {% for i in range(half_phong_hoc) %}
-                            <div class="col-floor">
-                                {% if i == 0 %}
-                                    <div class="empty-block"></div>
-                                {% endif %}
-                                {% if i == half_phong_hoc - 1  %}
-                                    <div class="half-empty_block"></div>
-                                {% endif %}
-                                {% if list_phong_hoc[i] %}
-                                    <div class="row-floor" id="room {{ list_phong_hoc[i].id }}">{{  list_phong_hoc[i].ten_phong }}</div>
-                                {% endif %}
-                                {% if i != 0 and i != half_phong_hoc - 1 %}
-                                    <div class="empty-block"></div>
-                                {% endif %}
-                                {% if list_phong_hoc[max_phong_hoc - i] %}
-                                    <div class="row-floor" id="room {{ list_phong_hoc[max_phong_hoc - i].id }}">{{ list_phong_hoc[max_phong_hoc - i].ten_phong }}</div>
-                                {% endif %}
-                                {% if i == 0 or i == half_phong_hoc - 1 %}
-                                    <div class="half-empty_block"></div>
-                                {% endif %}
-                            </div>
-                        {% endfor %}
+                        <div class="row-floor floor-up">
+                            {% for i in range(half_phong_hoc) %}
+                                <div class="col-floor" id="room {{ list_phong_hoc[i].id }}">{{  list_phong_hoc[i].ten_phong }}</div>
+                            {% endfor %}
+                        </div>
+                        <div class="row-floor floor-down">
+                            {% for j in range(half_phong_hoc, max_phong_hoc) %}
+                                <div class="col-floor" id="room {{ list_phong_hoc[j].id }}">{{  list_phong_hoc[j].ten_phong }}</div>
+                            {% endfor %}
+                        </div>
+
                         {% for i in range(max_phong_hoc) %}
                             {% if list_phong_hoc[i].tinh_trang.value == 2 %}
                                 <script>
@@ -108,6 +102,7 @@
                         <div class="color-tag color-grey"></div>
                         <div class="color-title">Đã đặt/Đang sử dụng</div>
                     </div>
+                      <button class="btn-map_room">Sơ đồ phòng</button>
                 </div>
             </div>
             <div id="sub-column_left__right--book_room">
@@ -133,7 +128,7 @@
                         <div class="inform-detail__row">
                             <div class="inform-detail__col" id="detail-phone_number">
                                 <div class="inform-detail_title">Số điện thoại: </div>
-                                <div><input readonly class="detail-input" type="text"></div>
+                                <div><input readonly value = '{{ current_user.so_dien_thoai }}' class="detail-input" type="text"></div>
                             </div>
                             <div class="inform-detail__col" id="detail-room_chosen">
                                 <div class="inform-detail_title">Phòng đăng ký: </div>
@@ -316,7 +311,10 @@
 </div>
 <script src="{{ url_for('static', filename='js/selectFloor.js') }}"></script>
 <script>
-    document.getElementById('select_floor').value= {{ floor }}
-    document.getElementById('select-ca-hoc').value= {{ ca }}
+    document.getElementById('select_floor').value= parseInt('{{ floor }}')
+    document.getElementById('select-ca-hoc').value= parseInt('{{ ca }}')
+    window.onload = function(){
+        getCaHoc(parseInt('{{ ca }}'))
+    }
 </script>
 {% endblock %}
