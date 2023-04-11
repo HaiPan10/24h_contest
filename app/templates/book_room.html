@@ -46,10 +46,7 @@
 
                         </form>
                     </div>
-
                 </div>
-
-
 
                 <div class="drop-down_row sub-row">
                     <div class="drop-down_member only-member">
@@ -132,14 +129,14 @@
                             </div>
                             <div class="inform-detail__col" id="detail-room_chosen">
                                 <div class="inform-detail_title">Phòng đăng ký: </div>
-                                <div><input class="detail-input" type="text"></div>
+                                <div><input readonly class="detail-input" id="chosen_room" name="chosen_room" type="text"></div>
                             </div>
                         </div>
 
                         <div class="inform-detail__row">
                             <div class="inform-detail__col" id="detail-date_order">
                                 <div class="inform-detail_title">Ngày mượn: </div>
-                                <div><input readonly id="date-book-info" class="detail-input" type="date"></div>
+                                <div><input readonly id="date-book-info" class="detail-input" type="date" value="{{ ngay_dat }}"></div>
                                 <div></div>
                             </div>
                             <div class="inform-detail__col" id="detail-time_start">
@@ -315,6 +312,25 @@
     document.getElementById('select-ca-hoc').value= parseInt('{{ ca }}')
     window.onload = function(){
         getCaHoc(parseInt('{{ ca }}'))
+    }
+
+    let ds_phong_hoc = []
+    let phong_hoc = {}
+    {% for p in list_phong_hoc %}
+        phong_hoc = {
+            id: {{ p.id }},
+            name: '{{ p.ten_phong }}',
+        }
+        ds_phong_hoc.push(phong_hoc);
+    {% endfor %}
+
+    var elements = document.querySelectorAll('[id^="room"]')
+    for (var i = 0; i < elements.length; i++) {
+      elements[i].addEventListener("click", function() {
+        let idSubstring = parseInt(this.id.substring(5))
+        let chosen_room = ds_phong_hoc.find(phong_hoc => phong_hoc.id === idSubstring);
+        document.getElementById('chosen_room').value= chosen_room.name
+      })
     }
 </script>
 {% endblock %}
