@@ -296,7 +296,7 @@ def save_room(request):
                                       ly_do=request['ly_do'],
                                       ca_id=int(request['ca_hoc_id']),
                                       phong_hoc_id=get_phong_hoc_by_name(request['ten_phong']).id,
-                                      ngay_muon="2023/04/13",
+                                      ngay_muon=datetime.strptime(request['ngay_muon'], "%m/%d/%Y"),
                                       thoi_gian_dat=datetime.now())
     # print(phieu_muon_phong)
     
