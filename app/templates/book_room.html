@@ -43,7 +43,6 @@
                                     {{ ca.gio_ket_thuc.strftime('%H:%M') }})</option>
                                 {% endfor %}
                             </select>
-
                         </form>
                     </div>
                 </div>
@@ -82,6 +81,17 @@
                                     d.className += " color-green";
                                 </script>
                             {% endif %}
+                        {% endfor %}
+
+                        <script>
+                            var myDiv
+                        </script>
+                        {% for i in lich_hoc %}
+                            <script>
+                                myDiv = document.getElementById("room {{ i.phong_hoc_id }}");
+                                myDiv.classList.remove('color-green');
+                                myDiv.className += " color-grey";
+                            </script>
                         {% endfor %}
                     </div>
                 </div>

@@ -588,6 +588,7 @@ body {
 
 .color-grey {
     background-color: #ccc;
+    pointer-events: none;
 }
 
 .only-member {

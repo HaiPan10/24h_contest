@@ -6,7 +6,7 @@ from sqlalchemy import func, update, and_, cast, Integer, extract, event, DDL
 from sqlalchemy.exc import DataError
 
 from app.models import UserAccount, Books, Categories, Orders, OrderDetails, UserRole, UserAccount, Comment, Status, \
-    PhongHoc, CaHoc, TaiKhoan
+    PhongHoc, CaHoc, TaiKhoan, LopHoc
 from app import db, utils, app
 import hashlib
 
@@ -96,7 +96,8 @@ def register(name, username, phone, password, avatar):
 
 
 def get_category_name(book_id):
-    return Categories.query.filter(and_(Books.category_id.__eq__(Categories.id), Books.id.__eq__(book_id))).first()
+    return Categories.query.filter(
+        (Books.category_id.__eq__(Categories.id), Books.id.__eq__(book_id))).first()
 
 
 def get_user_by_id(user_id):
@@ -256,7 +257,7 @@ ___________________________________In here____________________________________
 '''
 
 
-def load_room(so_lau):
+def load_room(so_lau, ca=None, ngay_dat=None):
     # if ca_id:
     #     query = PhongHoc.query.join(CaHoc, PhongHoc.id.__eq__(CaHoc.id)) \
     #         .filter(CaHoc.id.__eq__(ca_id))
@@ -277,3 +278,15 @@ def load_ca_hoc():
 
 def get_ca_hoc(ca_hoc_id):
     return CaHoc.query.get(ca_hoc_id)
+
+
+def get_lich_hoc(so_lau, gio_bat_dau, gio_ket_thuc, thu):
+    query = LopHoc.query.join(PhongHoc, LopHoc.phong_hoc_id.__eq__(PhongHoc.id)) \
+        .join(CaHoc, LopHoc.ca_id.__eq__(CaHoc.id)) \
+        .filter(PhongHoc.ten_phong.startswith(so_lau)
+                , CaHoc.gio_bat_dau.__le__(gio_bat_dau)
+                , CaHoc.gio_ket_thuc.__ge__(gio_ket_thuc)
+                , LopHoc.thu_trong_tuan.__eq__(thu))
+    return query.all()
+
+

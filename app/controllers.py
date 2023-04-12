@@ -420,19 +420,27 @@ def book_room():
         floor = 1
     list_phong_hoc = dao.load_room(so_lau=floor)
     if (len(list_phong_hoc) % 2) != 0:
-        half_phong_hoc = (int)(len(list_phong_hoc) / 2) + 1
+        half_phong_hoc = int(len(list_phong_hoc) / 2) + 1
     else:
-        half_phong_hoc = (int)(len(list_phong_hoc) / 2)
+        half_phong_hoc = int(len(list_phong_hoc) / 2)
     ca = request.args.get('select-ca-hoc')
     if ca is None:
         ca = 1
+    else:
+        ca = int(ca)
 
     date_book = request.args.get('date-book')
     if date_book is None:
         date_book = date.today() + timedelta(days=1)
+    else:
+        date_book = datetime.strptime(date_book, "%Y-%m-%d").date()
+    ca_hoc = dao.get_ca_hoc(ca_hoc_id=ca)
+    day_of_week = date_book.strftime('%a').upper()
+    lich_hoc = dao.get_lich_hoc(so_lau=floor, gio_bat_dau=ca_hoc.gio_bat_dau,
+                                gio_ket_thuc=ca_hoc.gio_ket_thuc, thu=day_of_week)
     return render_template('book_room.html', list_ca_hoc=list_ca_hoc, list_phong_hoc=list_phong_hoc,
                            max_phong_hoc=len(list_phong_hoc), half_phong_hoc=half_phong_hoc,
-                           floor=floor, ca=ca, ngay_dat=date_book)
+                           floor=floor, ca=ca, ngay_dat=date_book, lich_hoc=lich_hoc)
 
 
 def get_ca_hoc(ca_hoc_id):
