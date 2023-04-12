@@ -449,3 +449,13 @@ def get_ca_hoc(ca_hoc_id):
         "gio_bat_dau": ca_hoc.gio_bat_dau.strftime("%H:%M"),
         "gio_ket_thuc": ca_hoc.gio_ket_thuc.strftime("%H:%M")
     })
+
+
+def save_book_room():
+    if dao.save_room(request.json):
+        return jsonify({
+            "status": 200
+        })
+    return jsonify({
+        'status': 500
+    })

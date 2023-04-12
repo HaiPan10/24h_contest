@@ -34,6 +34,7 @@ app.add_url_rule("/logout", 'logout-my-user', controllers.logout_my_user)
 # app.add_url_rule("/api/products/product_id=<int:book_id>/comments", "comment-lists", controllers.comments)
 # app.add_url_rule("/api/products/product_id=<int:book_id>/comments", "comment-add", controllers.add_comment, methods=['post'])
 app.add_url_rule("/api/get_ca_hoc/<int:ca_hoc_id>", "get-ca-hoc", controllers.get_ca_hoc, methods=['post'])
+app.add_url_rule("/api/save_book_room", "save-book-room", controllers.save_book_room, methods=['post'])
 
 
 # login người dùng tại đây

@@ -6,7 +6,7 @@ from sqlalchemy import func, update, and_, cast, Integer, extract, event, DDL
 from sqlalchemy.exc import DataError
 
 from app.models import UserAccount, Books, Categories, Orders, OrderDetails, UserRole, UserAccount, Comment, Status, \
-    PhongHoc, CaHoc, TaiKhoan, LopHoc
+    PhongHoc, CaHoc, TaiKhoan, LopHoc, PhieuMuonPhong
 from app import db, utils, app
 import hashlib
 
@@ -290,3 +290,25 @@ def get_lich_hoc(so_lau, gio_bat_dau, gio_ket_thuc, thu):
     return query.all()
 
 
+def save_room(request):
+    print(request)
+    phieu_muon_phong = PhieuMuonPhong(tai_khoan_id=int(request['tai_khoan_id']),
+                                      ly_do=request['ly_do'],
+                                      ca_id=int(request['ca_hoc_id']),
+                                      phong_hoc_id=get_phong_hoc_by_name(request['ten_phong']).id,
+                                      ngay_muon="2023/04/13",
+                                      thoi_gian_dat=datetime.now())
+    # print(phieu_muon_phong)
+    
+    db.session.add(phieu_muon_phong)
+    result=True
+    try:
+        db.session.commit()
+    except Exception as e:
+        db.session.flush()
+        result=False
+    return result
+
+
+def get_phong_hoc_by_name(ten_phong):
+    return PhongHoc.query.filter(PhongHoc.ten_phong.contains(ten_phong)).first()

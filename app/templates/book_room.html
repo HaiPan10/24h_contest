@@ -120,63 +120,64 @@
                 <div class="col-primary">
                     <div class="order-detail">
                         <div class="order-title">ĐĂNG KÝ SỬ DỤNG GIẢNG ĐƯỜNG</div>
-
-                        <div class="inform-detail__row">
-                            <div class="inform-detail__col" id="detail-name">
-                                <div class="inform-detail_title">Họ tên người đặt phòng:</div>
-                                <div><input readonly value="{{ current_user.ho_ten }}" class="detail-input" type="text"></div>
-                            </div>
-                            <div class="inform-detail__col" id="detail-organization">
-                                <div class="inform-detail_title">Tổ chức đại diện:</div>
-                                <div><input readonly value="{{ current_user.dai_dien_to_chuc }}" class="detail-input" type="text"></div>
-                            </div>
-                        </div>
-
-                        <div class="inform-detail__row">
-                            <div class="inform-detail__col" id="detail-phone_number">
-                                <div class="inform-detail_title">Số điện thoại: </div>
-                                <div><input readonly value = '{{ current_user.so_dien_thoai }}' class="detail-input" type="text"></div>
-                            </div>
-                            <div class="inform-detail__col" id="detail-room_chosen">
-                                <div class="inform-detail_title">Phòng đăng ký: </div>
-                                <div><input readonly class="detail-input" id="chosen_room" name="chosen_room" type="text"></div>
-                            </div>
-                        </div>
-
-                        <div class="inform-detail__row">
-                            <div class="inform-detail__col" id="detail-date_order">
-                                <div class="inform-detail_title">Ngày mượn: </div>
-                                <div><input readonly id="date-book-info" class="detail-input" type="date" value="{{ ngay_dat }}"></div>
-                                <div></div>
-                            </div>
-                            <div class="inform-detail__col" id="detail-time_start">
-                                <div class="inform-detail_title">Thời gian bắt đầu: </div>
-                                <div><input id="start-time-book" readonly class="detail-input" type="time"></div>
-                            </div>
-                            <div class="inform-detail__col" id="detail-time_end">
-                                <div class="inform-detail_title">Thời gian kết thúc: </div>
-                                <div><input id="end-time-book" readonly class="detail-input" type="time"></div>
-                            </div>
-                        </div>
-                        <div class="inform-detail__row">
-                            <div class="inform-detail__col">
-                                <div class="inform-detail_title">
-                                    Lý do sử dụng
+                        <form action="" onsubmit="saveBookRoom('{{current_user.id}}', '{{ca}}', this)">
+                            <div class="inform-detail__row">
+                                <div class="inform-detail__col" id="detail-name">
+                                    <div class="inform-detail_title">Họ tên người đặt phòng:</div>
+                                    <div><input name="ho_ten" readonly value="{{ current_user.ho_ten }}" class="detail-input" type="text"></div>
                                 </div>
-                                <div>
-                                    <textarea name="purpose" id="purpose" cols="60" rows="5"></textarea>
+                                <div class="inform-detail__col" id="detail-organization">
+                                    <div class="inform-detail_title">Tổ chức đại diện:</div>
+                                    <div><input name="dai_dien_to_chuc" readonly value="{{ current_user.dai_dien_to_chuc }}" class="detail-input" type="text"></div>
                                 </div>
                             </div>
-                        </div>
-                        <div class="inform-detail__row">
-                            <input type="checkbox"><span class="alert-detail_title">Tôi cam kết sau khi sử dụng xong sẽ hoàn trả lại phòng đúng hiện trạng và cách bố trí ban đầu</span>
-                        </div>
-                        <div class="inform-detail__row flex-end">
-                            <div class="inform-detail__col">
-                                <button class="btn" id="btn-save_order">Lưu tách phiếu</button>
-                                <button class="btn" id="btn-submit">Đăng ký</button>
+    
+                            <div class="inform-detail__row">
+                                <div class="inform-detail__col" id="detail-phone_number">
+                                    <div class="inform-detail_title">Số điện thoại: </div>
+                                    <div><input name="so_dien_thoai" readonly value = '{{ current_user.so_dien_thoai }}' class="detail-input" type="text"></div>
+                                </div>
+                                <div class="inform-detail__col" id="detail-room_chosen">
+                                    <div class="inform-detail_title">Phòng đăng ký: </div>
+                                    <div><input name="phong_dang_ky" readonly class="detail-input" id="chosen_room" name="chosen_room" type="text"></div>
+                                </div>
                             </div>
-                        </div>
+    
+                            <div class="inform-detail__row">
+                                <div class="inform-detail__col" id="detail-date_order">
+                                    <div class="inform-detail_title">Ngày mượn: </div>
+                                    <div><input name="ngay_dat_phong" readonly id="date-book-info" class="detail-input" type="date" value="{{ ngay_dat }}"></div>
+                                    <div></div>
+                                </div>
+                                <div class="inform-detail__col" id="detail-time_start">
+                                    <div class="inform-detail_title">Thời gian bắt đầu: </div>
+                                    <div><input name="gio_bat_dau" id="start-time-book" readonly class="detail-input" type="time"></div>
+                                </div>
+                                <div class="inform-detail__col" id="detail-time_end">
+                                    <div class="inform-detail_title">Thời gian kết thúc: </div>
+                                    <div><input name="gio_ket_thuc" id="end-time-book" readonly class="detail-input" type="time"></div>
+                                </div>
+                            </div>
+                            <div class="inform-detail__row">
+                                <div class="inform-detail__col">
+                                    <div class="inform-detail_title">
+                                        Lý do sử dụng
+                                    </div>
+                                    <div>
+                                        <textarea name="purpose" id="purpose" cols="60" rows="5"></textarea>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="inform-detail__row">
+                                <input type="checkbox"><span class="alert-detail_title">Tôi cam kết sau khi sử dụng xong sẽ hoàn trả lại phòng đúng hiện trạng và cách bố trí ban đầu</span>
+                            </div>
+                            <div class="inform-detail__row flex-end">
+                                <div class="inform-detail__col">
+                                    <button class="btn" id="btn-save_order">Lưu tách phiếu</button>
+                                    <button type="submit" class="btn" id="btn-submit">Đăng ký</button>
+                                </div>
+                            </div>
+                        </form>
                     </div>
                 </div>
             </div>
@@ -316,7 +317,7 @@
     </div>
 </div>
 </div>
-<script src="{{ url_for('static', filename='js/selectFloor.js') }}"></script>
+
 <script>
     document.getElementById('select_floor').value= parseInt('{{ floor }}')
     document.getElementById('select-ca-hoc').value= parseInt('{{ ca }}')
@@ -329,7 +330,7 @@
     {% for p in list_phong_hoc %}
         phong_hoc = {
             id: {{ p.id }},
-            name: '{{ p.ten_phong }}',
+            name: {{ p.ten_phong }},
         }
         ds_phong_hoc.push(phong_hoc);
     {% endfor %}
@@ -338,9 +339,10 @@
     for (var i = 0; i < elements.length; i++) {
       elements[i].addEventListener("click", function() {
         let idSubstring = parseInt(this.id.substring(5))
-        let chosen_room = ds_phong_hoc.find(phong_hoc => phong_hoc.id === idSubstring);
+        var chosen_room = ds_phong_hoc.find(phong_hoc => phong_hoc.id === idSubstring);
         document.getElementById('chosen_room').value= chosen_room.name
       })
     }
 </script>
+<script src="{{ url_for('static', filename='js/selectFloor.js') }}"></script>
 {% endblock %}
