@@ -27,6 +27,11 @@ function getCaHoc(caHocId) {
 }
 
 function saveBookRoom(userID, caHocID, form){
+  checkbox = document.getElementById('confirm-box')
+  if(checkbox.checked == false){
+    alert("Vui lòng tick vào cam kết")
+    return false
+  }
   console.log(chosen_room.id)
   fetch(`/api/save_book_room`,{
       method : "post",
@@ -49,4 +54,5 @@ function saveBookRoom(userID, caHocID, form){
         alert("Đặt phòng thất bại")
       }
   })
+  return true
 }

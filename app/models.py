@@ -20,6 +20,9 @@ class GiangVien(BaseModel):
     gioi_tinh = Column(String(15), nullable=True)
     day = relationship('Day', backref='giang_vien', lazy=True)
 
+    def __str__(self) -> str:
+        return self.ho_gv + self.ten_gv
+
 
 class TinhTrang(TinhTrangEnum):
     DA_DAT = 1
@@ -34,6 +37,9 @@ class PhongHoc(BaseModel):
     lop_hoc = relationship('LopHoc', backref='phong_hoc', lazy=True)
     phieu_muon_phong = relationship('PhieuMuonPhong', backref='phong_hoc', lazy=True)
 
+    def __str__(self) -> str:
+        return self.ten_phong
+
 
 class CaHoc(BaseModel):
     ten_ca = Column(String(100), nullable=False)
@@ -41,6 +47,9 @@ class CaHoc(BaseModel):
     gio_ket_thuc = Column(Time)
     lop_hoc = relationship('LopHoc', backref='ca', lazy=True)
     phieu_muon = relationship('PhieuMuonPhong', backref='ca', lazy=True)
+
+    def __str__(self) -> str:
+        return self.ten_ca
 
 
 class TaiKhoan(BaseModel, UserMixin):
@@ -55,10 +64,16 @@ class TaiKhoan(BaseModel, UserMixin):
     da_bi_khoa = Column(Boolean, default=False)
     phieu_muon = relationship('PhieuMuonPhong', backref='tai_khoan', lazy=True)
 
+    def __str__(self) -> str:
+        return self.ho_ten
+
 
 class MonHoc(BaseModel):
     ten_mon = Column(String(50), nullable=False)
     lop_hoc = relationship('LopHoc', backref='mon_hoc', lazy=True)
+
+    def __str__(self) -> str:
+        return self.ten_mon
 
 
 class DayInWeek(DayInWeekEnum):
