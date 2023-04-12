@@ -120,7 +120,7 @@
                 <div class="col-primary">
                     <div class="order-detail">
                         <div class="order-title">ĐĂNG KÝ SỬ DỤNG GIẢNG ĐƯỜNG</div>
-                        <form action="" onsubmit="saveBookRoom('{{current_user.id}}', '{{ca}}', this)">
+                        <form action="" onsubmit="saveBookRoom('{{current_user.id}}', '{{ca}}', this)" method="post">
                             <div class="inform-detail__row">
                                 <div class="inform-detail__col" id="detail-name">
                                     <div class="inform-detail_title">Họ tên người đặt phòng:</div>
@@ -169,7 +169,7 @@
                                 </div>
                             </div>
                             <div class="inform-detail__row">
-                                <input type="checkbox"><span class="alert-detail_title">Tôi cam kết sau khi sử dụng xong sẽ hoàn trả lại phòng đúng hiện trạng và cách bố trí ban đầu</span>
+                                <input id="confirm-box" type="checkbox"><span class="alert-detail_title">Tôi cam kết sau khi sử dụng xong sẽ hoàn trả lại phòng đúng hiện trạng và cách bố trí ban đầu</span>
                             </div>
                             <div class="inform-detail__row flex-end">
                                 <div class="inform-detail__col">
@@ -330,7 +330,7 @@
     {% for p in list_phong_hoc %}
         phong_hoc = {
             id: {{ p.id }},
-            name: {{ p.ten_phong }},
+            name:'{{ p.ten_phong }}',
         }
         ds_phong_hoc.push(phong_hoc);
     {% endfor %}

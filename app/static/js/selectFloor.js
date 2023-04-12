@@ -46,7 +46,7 @@ function saveBookRoom(userID, caHocID, form){
       }
       else
       {
-        prompt("Đặt phòng thất bại")
+        alert("Đặt phòng thất bại")
       }
   })
 }

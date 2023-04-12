@@ -452,10 +452,12 @@ def get_ca_hoc(ca_hoc_id):
 
 
 def save_book_room():
-    if dao.save_room(request.json):
-        return jsonify({
-            "status": 200
-        })
+    
+    if request.json['ten_phong']:
+        if dao.save_room(request.json):
+            return jsonify({
+                "status": 200
+            })
     return jsonify({
         'status': 500
     })
