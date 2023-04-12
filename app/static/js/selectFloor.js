@@ -38,7 +38,7 @@ function saveBookRoom(userID, caHocID, form){
           'tai_khoan_id' : userID,
           'ca_hoc_id' : caHocID,
           'ten_phong' : document.getElementById('chosen_room').value,
-          'ngay_muon' : new Date(form['ngay_dat_phong'].value).toLocaleDateString(),
+          'ngay_muon' : form['ngay_dat_phong'].value,
           'ly_do' : form['purpose'].value
       }),
       headers : {

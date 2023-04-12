@@ -310,7 +310,7 @@ class OrdersView(ModelView):
 '''
 
 
-admin = Admin(app=app, name='Quản Trị Bán Sách', template_mode='bootstrap4')
+admin = Admin(app=app, name='Quản Trị Mượn Đặt Phòng', template_mode='bootstrap4')
 # admin.add_view(BooksView(Books, db.session, name='Các Sản Phẩm Sách', endpoint='admin-input'))
 # admin.add_view(CategoriesView(Categories, db.session, name='Danh mục'))
 # admin.add_view(InputBooksView(Books, db.session, name='Nhập kho', endpoint='admin-input-quantity'))

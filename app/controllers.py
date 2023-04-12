@@ -454,7 +454,7 @@ def get_ca_hoc(ca_hoc_id):
 
 
 def save_book_room():
-    
+    # print(request.json['ngay_muon'])
     if request.json['ten_phong']:
         if dao.save_room(request.json):
             return jsonify({
