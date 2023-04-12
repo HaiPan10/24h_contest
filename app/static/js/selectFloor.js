@@ -32,8 +32,6 @@ function saveBookRoom(userID, caHocID, form){
     alert("Vui lòng tick vào cam kết")
     return false
   }
-  console.log(chosen_room.id)
-  console.log(form['ngay_dat_phong'].value)
   fetch(`/api/save_book_room`,{
       method : "post",
       body : JSON.stringify({
