@@ -33,6 +33,7 @@ function saveBookRoom(userID, caHocID, form){
     return false
   }
   console.log(chosen_room.id)
+  console.log(form['ngay_dat_phong'].value)
   fetch(`/api/save_book_room`,{
       method : "post",
       body : JSON.stringify({
@@ -46,7 +47,7 @@ function saveBookRoom(userID, caHocID, form){
           'Content-Type' : 'application/json'
       }
   }).then(res => res.json()).then(data => {
-      if(data['status'] == "200"){
+      if(data['status'] == "200") {
         window.location.href = "/"
       }
       else

@@ -93,6 +93,13 @@
                                 myDiv.className += " color-grey";
                             </script>
                         {% endfor %}
+                        {% for i in phieu_muon_phong %}
+                            <script>
+                                myDiv = document.getElementById("room {{ i.phong_hoc_id }}");
+                                myDiv.classList.remove('color-green');
+                                myDiv.className += " color-grey";
+                            </script>
+                        {% endfor %}
                     </div>
                 </div>
                 <div class="sub-row map-title">Sơ đồ giảng đường</div>

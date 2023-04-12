@@ -2,7 +2,7 @@ from datetime import datetime, timedelta
 import re
 
 from flask_login import current_user
-from sqlalchemy import func, update, and_, cast, Integer, extract, event, DDL
+from sqlalchemy import func, update, and_, or_, cast, Integer, extract, event, DDL
 from sqlalchemy.exc import DataError
 
 from app.models import UserAccount, Books, Categories, Orders, OrderDetails, UserRole, UserAccount, Comment, Status, \
@@ -284,8 +284,10 @@ def get_lich_hoc(so_lau, gio_bat_dau, gio_ket_thuc, thu):
     query = LopHoc.query.join(PhongHoc, LopHoc.phong_hoc_id.__eq__(PhongHoc.id)) \
         .join(CaHoc, LopHoc.ca_id.__eq__(CaHoc.id)) \
         .filter(PhongHoc.ten_phong.startswith(so_lau)
-                , CaHoc.gio_bat_dau.__le__(gio_bat_dau)
-                , CaHoc.gio_ket_thuc.__ge__(gio_ket_thuc)
+                , or_(and_(CaHoc.gio_bat_dau.__eq__(gio_bat_dau), CaHoc.gio_ket_thuc.__le__(gio_ket_thuc))
+                      , and_(CaHoc.gio_bat_dau.__eq__(gio_bat_dau), CaHoc.gio_ket_thuc.__ge__(gio_ket_thuc))
+                      , and_(CaHoc.gio_ket_thuc.__eq__(gio_ket_thuc), CaHoc.gio_bat_dau.__le__(gio_bat_dau))
+                      , and_(CaHoc.gio_ket_thuc.__eq__(gio_ket_thuc), CaHoc.gio_bat_dau.__ge__(gio_bat_dau)))
                 , LopHoc.thu_trong_tuan.__eq__(thu))
     return query.all()
 
@@ -312,3 +314,16 @@ def save_room(request):
 
 def get_phong_hoc_by_name(ten_phong):
     return PhongHoc.query.filter(PhongHoc.ten_phong.contains(ten_phong)).first()
+
+
+def get_phieu_muon(so_lau, gio_bat_dau, gio_ket_thuc, ngay_muon):
+    query = PhieuMuonPhong.query.join(PhongHoc, PhieuMuonPhong.phong_hoc_id.__eq__(PhongHoc.id)) \
+        .join(CaHoc, PhieuMuonPhong.ca_id.__eq__(CaHoc.id)) \
+        .filter(PhongHoc.ten_phong.startswith(so_lau)
+                , or_(and_(CaHoc.gio_bat_dau.__eq__(gio_bat_dau), CaHoc.gio_ket_thuc.__le__(gio_ket_thuc))
+                      , and_(CaHoc.gio_bat_dau.__eq__(gio_bat_dau), CaHoc.gio_ket_thuc.__ge__(gio_ket_thuc))
+                      , and_(CaHoc.gio_ket_thuc.__eq__(gio_ket_thuc), CaHoc.gio_bat_dau.__le__(gio_bat_dau))
+                      , and_(CaHoc.gio_ket_thuc.__eq__(gio_ket_thuc), CaHoc.gio_bat_dau.__ge__(gio_bat_dau)))
+                , PhieuMuonPhong.ngay_muon.__eq__(ngay_muon))
+    return query.all()
+
