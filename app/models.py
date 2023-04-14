@@ -4,7 +4,8 @@ from datetime import datetime
 from app import db, app
 from sqlalchemy.orm import relationship
 from sqlalchemy import Integer, Column, String, ForeignKey, DateTime, Float, Enum, Text, Boolean, Date, Time
-from enum import Enum as UserEnum, Enum as StatusEnum, Enum as DayInWeekEnum, Enum as TinhTrangEnum
+from enum import Enum as UserEnum, Enum as StatusEnum, Enum as DayInWeekEnum, Enum as TinhTrangEnum, \
+    Enum as TrangThaiEnum
 from flask_login import UserMixin
 
 
@@ -86,6 +87,13 @@ class DayInWeek(DayInWeekEnum):
     SUN = 7
 
 
+class TrangThai(TrangThaiEnum):
+    DANG_CHO_DUYET = 1
+    TU_CHOI = 2
+    SAN_SANG = 3
+    THANH_CONG = 4
+
+
 class LopHoc(BaseModel):
     thu_trong_tuan = Column(Enum(DayInWeek))
     mon_hoc_id = Column(Integer, ForeignKey(MonHoc.id), nullable=False)
@@ -106,6 +114,7 @@ class PhieuMuonPhong(BaseModel):
     tai_khoan_id = Column(Integer, ForeignKey(TaiKhoan.id), nullable=False)
     ca_id = Column(Integer, ForeignKey(CaHoc.id), nullable=False)
     phong_hoc_id = Column(Integer, ForeignKey(PhongHoc.id), nullable=False)
+    trang_thai = Column(Enum(TrangThai))
 
 
 '''
