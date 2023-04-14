@@ -1,6 +1,4 @@
-import hashlib
 from datetime import datetime
-
 from app import db, app
 from sqlalchemy.orm import relationship
 from sqlalchemy import Integer, Column, String, ForeignKey, DateTime, Float, Enum, Text, Boolean, Date, Time

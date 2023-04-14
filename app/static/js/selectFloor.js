@@ -1,4 +1,4 @@
-const dateBook = document.getElementById("date-book")
+var dateBook = document.getElementById("date-book")
 dateBook.addEventListener("change", function () {
   let dateBookInfo = document.getElementById("date-book-info")
   dateBookInfo.value = dateBook.value
