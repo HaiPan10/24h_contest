@@ -46,7 +46,7 @@ function saveBookRoom(userID, caHocID, form){
       }
   }).then(res => res.json()).then(data => {
       if(data['status'] == "200") {
-        window.location.href = "/"
+        window.location.href = "/xem_phieu_muon"
       }
       else
       {

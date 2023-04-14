@@ -25,6 +25,7 @@ h1 {
 }
 .accordion--open .accordion__content {
   display: block;
+  z-index: 1;
 }
 .accordion{
     display: flex;
@@ -48,4 +49,5 @@ h1 {
   display: none;
   font-size: 16px;
   padding: 0 0 16px;
+  pointer-events: none;
 }
