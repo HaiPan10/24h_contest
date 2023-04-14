@@ -1,330 +1,190 @@
-{% extends 'layout/base.html' %}
-{% block title %}Tiện ích sinh viên{% endblock %}
-{% block content %}
-<div id="container">
-    <div id="banner">
-    <img src="/static/images/banner.png" alt="">
-</div>
-    <div id="content-container">
-    <div id="column-left">
-        <div class="sub-header border-radius__top">ĐĂNG KÝ MƯỢN PHÒNG HỌC</div>
-        <div id="sub-container_left">
-            <div id="sub-column_left__left--book_room">
-                <div class="drop-down_row sub-row">
-                    <div class="drop-down_member">
-                        <span class="drop-down_title">Cơ sở:</span>
-                        <select>
-                            <option value="option2" selected>Nguyễn Kiệm</option>
+{% extends 'layout/main_view.html' %}
+
+{% block column_left %}
+<div class="sub-header border-radius__top">ĐĂNG KÝ MƯỢN PHÒNG HỌC</div>
+<div id="sub-container_left">
+        <div id="sub-column_left__left--book_room">
+            <div class="drop-down_row sub-row">
+                <div class="drop-down_member">
+                    <span class="drop-down_title">Cơ sở:</span>
+                    <select>
+                        <option value="option2" selected>Nguyễn Kiệm</option>
+                    </select>
+                </div>
+                <div class="drop-down_member">
+                    <form action="">
+                        <input type="hidden" name="date-book" value="{{ ngay_dat }}">
+                        <input type="hidden" name="select-ca-hoc" value="{{ ca }}">
+                        <select id="select_floor" name="select_floor" onchange="this.form.submit()">
+                            <option value="0" selected>Lầu trệt</option>
+                            <option value="1">Lầu 1</option>
+                            <option value="2">Lầu 2</option>
+                            <option value="3">Lầu 3</option>
+                            <option value="4">Lầu 4</option>
+                            <option value="5">Lầu 5</option>
                         </select>
-                    </div>
-                    <div class="drop-down_member">
-                        <form action="">
-                            <input type="hidden" name="date-book" value="{{ ngay_dat }}">
-                            <input type="hidden" name="select-ca-hoc" value="{{ ca }}">
-                            <select id="select_floor" name="select_floor" onchange="this.form.submit()">
-                                <option value="0" selected>Lầu trệt</option>
-                                <option value="1">Lầu 1</option>
-                                <option value="2">Lầu 2</option>
-                                <option value="3">Lầu 3</option>
-                                <option value="4">Lầu 4</option>
-                                <option value="5">Lầu 5</option>
-                            </select>
-                        </form>
-                    </div>
-                    <div class="drop-down_member">
-                        <form action="">
-                            <input type="hidden" name="select_floor" value="{{ floor }}">
-                            <input type="hidden" name="date-book" value="{{ ngay_dat }}">
-                            <span class="drop-down_title">Ca:</span>
-                            <select id="select-ca-hoc" name="select-ca-hoc" onchange="this.form.submit()">
-                                {% for ca in list_ca_hoc %}
-                                <option
-                                value="{{ ca.id }}">{{ ca.ten_ca }} ({{ ca.gio_bat_dau.strftime('%H:%M') }} -
-                                    {{ ca.gio_ket_thuc.strftime('%H:%M') }})</option>
-                                {% endfor %}
-                            </select>
-                        </form>
-                    </div>
+                    </form>
                 </div>
-
-                <div class="drop-down_row sub-row">
-                    <div class="drop-down_member only-member">
-                        <form action="">
-                            <input type="hidden" name="select_floor" value="{{ floor }}">
-                            <input type="hidden" name="select-ca-hoc" value="{{ ca }}">
-                            <span class="drop-down_title">Ngày đặt phòng: </span><input id="date-book" type="date" name="date-book" onchange="this.form.submit()" value="{{ ngay_dat }}">
-                        </form>
-                    </div>
+                <div class="drop-down_member">
+                    <form action="">
+                        <input type="hidden" name="select_floor" value="{{ floor }}">
+                        <input type="hidden" name="date-book" value="{{ ngay_dat }}">
+                        <span class="drop-down_title">Ca:</span>
+                        <select id="select-ca-hoc" name="select-ca-hoc" onchange="this.form.submit()">
+                            {% for ca in list_ca_hoc %}
+                            <option
+                            value="{{ ca.id }}">{{ ca.ten_ca }} ({{ ca.gio_bat_dau.strftime('%H:%M') }} -
+                                {{ ca.gio_ket_thuc.strftime('%H:%M') }})</option>
+                            {% endfor %}
+                        </select>
+                    </form>
                 </div>
-                <div class="primary-row">
-                    <div id="floor-container" class="floor-container">
-                        <div class="row-floor floor-up">
-                            {% for i in range(half_phong_hoc) %}
-                                <div class="col-floor" id="room {{ list_phong_hoc[i].id }}">{{  list_phong_hoc[i].ten_phong }}</div>
-                            {% endfor %}
-                        </div>
-                        <div class="row-floor floor-down">
-                            {% for j in range(half_phong_hoc, max_phong_hoc) %}
-                                <div class="col-floor" id="room {{ list_phong_hoc[j].id }}">{{  list_phong_hoc[j].ten_phong }}</div>
-                            {% endfor %}
-                        </div>
+            </div>
 
-                        {% for i in range(max_phong_hoc) %}
-                            {% if list_phong_hoc[i].tinh_trang.value == 2 %}
-                                <script>
-                                    var d = document.getElementById("room {{ list_phong_hoc[i].id }}");
-                                    d.className += " color-red";
-                                </script>
-                            {% else %}
-                                <script>
-                                    var d = document.getElementById("room {{ list_phong_hoc[i].id }}");
-                                    d.className += " color-green";
-                                </script>
-                            {% endif %}
+            <div class="drop-down_row sub-row">
+                <div class="drop-down_member only-member">
+                    <form action="">
+                        <input type="hidden" name="select_floor" value="{{ floor }}">
+                        <input type="hidden" name="select-ca-hoc" value="{{ ca }}">
+                        <span class="drop-down_title">Ngày đặt phòng: </span><input id="date-book" type="date" name="date-book" onchange="this.form.submit()" value="{{ ngay_dat }}">
+                    </form>
+                </div>
+            </div>
+            <div class="primary-row">
+                <div id="floor-container" class="floor-container">
+                    <div class="row-floor floor-up">
+                        {% for i in range(half_phong_hoc) %}
+                            <div class="col-floor" id="room {{ list_phong_hoc[i].id }}">{{  list_phong_hoc[i].ten_phong }}</div>
                         {% endfor %}
+                    </div>
+                    <div class="row-floor floor-down">
+                        {% for j in range(half_phong_hoc, max_phong_hoc) %}
+                            <div class="col-floor" id="room {{ list_phong_hoc[j].id }}">{{  list_phong_hoc[j].ten_phong }}</div>
+                        {% endfor %}
+                    </div>
 
+                    {% for i in range(max_phong_hoc) %}
+                        {% if list_phong_hoc[i].tinh_trang.value == 2 %}
+                            <script>
+                                var d = document.getElementById("room {{ list_phong_hoc[i].id }}");
+                                d.className += " color-red";
+                            </script>
+                        {% else %}
+                            <script>
+                                var d = document.getElementById("room {{ list_phong_hoc[i].id }}");
+                                d.className += " color-green";
+                            </script>
+                        {% endif %}
+                    {% endfor %}
+
+                    <script>
+                        var myDiv
+                    </script>
+                    {% for i in lich_hoc %}
                         <script>
-                            var myDiv
+                            myDiv = document.getElementById("room {{ i.phong_hoc_id }}");
+                            myDiv.classList.remove('color-green');
+                            myDiv.className += " color-grey";
                         </script>
-                        {% for i in lich_hoc %}
-                            <script>
-                                myDiv = document.getElementById("room {{ i.phong_hoc_id }}");
-                                myDiv.classList.remove('color-green');
-                                myDiv.className += " color-grey";
-                            </script>
-                        {% endfor %}
-                        {% for i in phieu_muon_phong %}
-                            <script>
-                                myDiv = document.getElementById("room {{ i.phong_hoc_id }}");
-                                myDiv.classList.remove('color-green');
-                                myDiv.className += " color-grey";
-                            </script>
-                        {% endfor %}
-                    </div>
-                </div>
-                <div class="sub-row map-title">Sơ đồ giảng đường</div>
-                <div class="drop-down_row sub-row">
-                    <div class="color-tag__col">
-                        <div class="color-tag color-green"></div>
-                        <div class="color-title">Còn trống</div>
-                    </div>
-                    <div class="color-tag__col">
-                        <div class="color-tag color-red"></div>
-                        <div class="color-title">Bảo trì</div>
-                    </div>
-                    <div class="color-tag__col">
-                        <div class="color-tag color-grey"></div>
-                        <div class="color-title">Đã đặt/Đang sử dụng</div>
-                    </div>
-                      <button class="btn-map_room">Sơ đồ phòng</button>
+                    {% endfor %}
+                    {% for i in phieu_muon_phong %}
+                        <script>
+                            myDiv = document.getElementById("room {{ i.phong_hoc_id }}");
+                            myDiv.classList.remove('color-green');
+                            myDiv.className += " color-grey";
+                        </script>
+                    {% endfor %}
                 </div>
             </div>
-            <div id="sub-column_left__right--book_room">
-                <div class="flex-end col-header">
-                    <button class="btn-book_room btn-book_room--chosen"><i class="fa-solid fa-school icon"></i>Đặt phòng</button>
-                    <button class="btn-book_room"><i class="fa-solid fa-list-check icon"></i>Xem phiếu mượn</button>
+            <div class="sub-row map-title">Sơ đồ giảng đường</div>
+            <div class="drop-down_row sub-row">
+                <div class="color-tag__col">
+                    <div class="color-tag color-green"></div>
+                    <div class="color-title">Còn trống</div>
                 </div>
-                <div class="col-primary">
-                    <div class="order-detail">
-                        <div class="order-title">ĐĂNG KÝ SỬ DỤNG GIẢNG ĐƯỜNG</div>
-                        <form action="" onsubmit="saveBookRoom('{{current_user.id}}', '{{ca}}', this)" method="post">
-                            <div class="inform-detail__row">
-                                <div class="inform-detail__col" id="detail-name">
-                                    <div class="inform-detail_title">Họ tên người đặt phòng:</div>
-                                    <div><input name="ho_ten" readonly value="{{ current_user.ho_ten }}" class="detail-input" type="text"></div>
+                <div class="color-tag__col">
+                    <div class="color-tag color-red"></div>
+                    <div class="color-title">Bảo trì</div>
+                </div>
+                <div class="color-tag__col">
+                    <div class="color-tag color-grey"></div>
+                    <div class="color-title">Đã đặt/Đang sử dụng</div>
+                </div>
+                  <button class="btn-map_room">Sơ đồ phòng</button>
+            </div>
+        </div>
+        <div id="sub-column_left__right--book_room">
+            <div class="flex-end col-header">
+                <button class="btn-book_room btn-book_room--chosen" onclick="location.href='/dat_phong'"><i class="fa-solid fa-school icon"></i>Đặt phòng</button>
+                <button class="btn-book_room" onclick="location.href='/xem_phieu_muon'"><i class="fa-solid fa-list-check icon"></i>Xem phiếu mượn</button>
+            </div>
+            <div class="col-primary">
+                <div class="order-detail">
+                    <div class="order-title">ĐĂNG KÝ SỬ DỤNG GIẢNG ĐƯỜNG</div>
+                    <form action="" onsubmit="saveBookRoom('{{current_user.id}}', '{{ca}}', this)" method="post">
+                        <div class="inform-detail__row">
+                            <div class="inform-detail__col" id="detail-name">
+                                <div class="inform-detail_title">Họ tên người đặt phòng:</div>
+                                <div><input name="ho_ten" readonly value="{{ current_user.ho_ten }}" class="detail-input" type="text"></div>
+                            </div>
+                            <div class="inform-detail__col" id="detail-organization">
+                                <div class="inform-detail_title">Tổ chức đại diện:</div>
+                                <div><input name="dai_dien_to_chuc" readonly value="{{ current_user.dai_dien_to_chuc }}" class="detail-input" type="text"></div>
+                            </div>
+                        </div>
+
+                        <div class="inform-detail__row">
+                            <div class="inform-detail__col" id="detail-phone_number">
+                                <div class="inform-detail_title">Số điện thoại: </div>
+                                <div><input name="so_dien_thoai" readonly value = '{{ current_user.so_dien_thoai }}' class="detail-input" type="text"></div>
+                            </div>
+                            <div class="inform-detail__col" id="detail-room_chosen">
+                                <div class="inform-detail_title">Phòng đăng ký: </div>
+                                <div><input name="phong_dang_ky" readonly class="detail-input" id="chosen_room" name="chosen_room" type="text"></div>
+                            </div>
+                        </div>
+
+                        <div class="inform-detail__row">
+                            <div class="inform-detail__col" id="detail-date_order">
+                                <div class="inform-detail_title">Ngày mượn: </div>
+                                <div><input name="ngay_dat_phong" readonly id="date-book-info" class="detail-input" type="date" value="{{ ngay_dat }}"></div>
+                                <div></div>
+                            </div>
+                            <div class="inform-detail__col" id="detail-time_start">
+                                <div class="inform-detail_title">Thời gian bắt đầu: </div>
+                                <div><input name="gio_bat_dau" id="start-time-book" readonly class="detail-input" type="time"></div>
+                            </div>
+                            <div class="inform-detail__col" id="detail-time_end">
+                                <div class="inform-detail_title">Thời gian kết thúc: </div>
+                                <div><input name="gio_ket_thuc" id="end-time-book" readonly class="detail-input" type="time"></div>
+                            </div>
+                        </div>
+                        <div class="inform-detail__row">
+                            <div class="inform-detail__col">
+                                <div class="inform-detail_title">
+                                    Lý do sử dụng
                                 </div>
-                                <div class="inform-detail__col" id="detail-organization">
-                                    <div class="inform-detail_title">Tổ chức đại diện:</div>
-                                    <div><input name="dai_dien_to_chuc" readonly value="{{ current_user.dai_dien_to_chuc }}" class="detail-input" type="text"></div>
+                                <div>
+                                    <textarea required name="purpose" id="purpose" cols="60" rows="5"></textarea>
                                 </div>
                             </div>
-    
-                            <div class="inform-detail__row">
-                                <div class="inform-detail__col" id="detail-phone_number">
-                                    <div class="inform-detail_title">Số điện thoại: </div>
-                                    <div><input name="so_dien_thoai" readonly value = '{{ current_user.so_dien_thoai }}' class="detail-input" type="text"></div>
-                                </div>
-                                <div class="inform-detail__col" id="detail-room_chosen">
-                                    <div class="inform-detail_title">Phòng đăng ký: </div>
-                                    <div><input name="phong_dang_ky" readonly class="detail-input" id="chosen_room" name="chosen_room" type="text"></div>
-                                </div>
+                        </div>
+                        <div class="inform-detail__row">
+                            <input required id="confirm-box" type="checkbox"><span class="alert-detail_title">Tôi cam kết sau khi sử dụng xong sẽ hoàn trả lại phòng đúng hiện trạng và cách bố trí ban đầu</span>
+                        </div>
+                        <div class="inform-detail__row flex-end">
+                            <div class="inform-detail__col">
+                                <button class="btn" id="btn-save_order">Lưu tách phiếu</button>
+                                <button type="submit" class="btn" id="btn-submit">Đăng ký</button>
                             </div>
-    
-                            <div class="inform-detail__row">
-                                <div class="inform-detail__col" id="detail-date_order">
-                                    <div class="inform-detail_title">Ngày mượn: </div>
-                                    <div><input name="ngay_dat_phong" readonly id="date-book-info" class="detail-input" type="date" value="{{ ngay_dat }}"></div>
-                                    <div></div>
-                                </div>
-                                <div class="inform-detail__col" id="detail-time_start">
-                                    <div class="inform-detail_title">Thời gian bắt đầu: </div>
-                                    <div><input name="gio_bat_dau" id="start-time-book" readonly class="detail-input" type="time"></div>
-                                </div>
-                                <div class="inform-detail__col" id="detail-time_end">
-                                    <div class="inform-detail_title">Thời gian kết thúc: </div>
-                                    <div><input name="gio_ket_thuc" id="end-time-book" readonly class="detail-input" type="time"></div>
-                                </div>
-                            </div>
-                            <div class="inform-detail__row">
-                                <div class="inform-detail__col">
-                                    <div class="inform-detail_title">
-                                        Lý do sử dụng
-                                    </div>
-                                    <div>
-                                        <textarea required name="purpose" id="purpose" cols="60" rows="5"></textarea>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="inform-detail__row">
-                                <input required id="confirm-box" type="checkbox"><span class="alert-detail_title">Tôi cam kết sau khi sử dụng xong sẽ hoàn trả lại phòng đúng hiện trạng và cách bố trí ban đầu</span>
-                            </div>
-                            <div class="inform-detail__row flex-end">
-                                <div class="inform-detail__col">
-                                    <button class="btn" id="btn-save_order">Lưu tách phiếu</button>
-                                    <button type="submit" class="btn" id="btn-submit">Đăng ký</button>
-                                </div>
-                            </div>
-                        </form>
-                    </div>
+                        </div>
+                    </form>
                 </div>
             </div>
         </div>
     </div>
-    <div id="column-right">
-            {% if current_user.is_authenticated %}
-            <div id="login-success" class="border-radius__bottom">
-                <div class="sub-header flex-direction__row">
-                    <div class="login-title__success"><i class="fa fa-user pr-2"></i><span
-                            class="title">ĐĂNG NHẬP</span></div>
-                    <div class="login-title__success--icon flex-end"><i class="fas fa-chevron-right right"></i></div>
-                </div>
-                <div class="margin-login">
-                    <div class="input-with__icon border_bottom content-login">
-                        <div class="content-login__left">Tài khoản</div>
-                        <div class="content-login__right">{{ current_user.mssv }}</div>
-                    </div>
-                    <div class="input-with__icon content-login">
-                        <div class="content-login__left">Họ tên</div>
-                        <div class="content-login__right">{{ current_user.ho_ten }}</div>
-                    </div>
-                </div>
-                <div class="btn-login__container">
-                    <button class="btn-logout" onclick="location.href='/logout'"><i class="icon fas fa-sign-in-alt icon-in__button"></i>Đăng xuất</button>
-                </div>
-            </div>
-            {% else %}
-            <div id="login-area" class="border-radius__bottom">
-                <div class="sub-header"><i class="fa fa-user pr-2"></i><span class="title">ĐĂNG NHẬP</span></div>
-                <div class="input-with__icon">
-                    <div class="icon-with__input border-radius__left"><i class="fa fa-user"></i></div>
-                    <div class="input-user__name border-radius__right"><input type="text"></div>
-                </div>
-                <div class="input-with__icon">
-                    <div class="icon-with__input border-radius__left"><i class="fa fa-lock"></i></div>
-                    <div class="input-pass__word"><input type="text"></div>
-                    <div class="icon-with__input border-radius__right"><i class="fa-solid fa-eye-slash"></i></div>
-                </div>
-                <div class="btn-login__container">
-                    <button class="btn-login"><i class="icon fas fa-sign-in-alt icon-in__button"></i>Đăng nhập</button>
-                </div>
-                <div class="notice-login">Chú ý: SV đăng nhập click vào nút "Đăng nhập tài khoản HCMCOU-SSO" ở bên
-                    dưới
-                </div>
-                <div class="btn-login__container">
-                    <button class="btn-login__second"><a class="btn-login-hcmou" href="/login?next=/"><i
-                            class="icon fas fa-sign-in-alt icon-in__button"></i>Đăng nhập tài khoản HCMCOU-SSO</a>
-                    </button>
-                </div>
-            </div>
-            {% endif %}
-            <div id="feature-area" class="border-radius__top">
-                <div class="sub-header border-radius__top"><i class="fas fa-cogs pr-1"></i><span
-                        class="title">TÍNH NĂNG</span></div>
-                {% if current_user.is_authenticated %}
-                <div id="feature-area__show flex-direction__row" class="border-radius__top">
-                    <div class="feature-list">
-                        <div class="list_feature--member">
-                            <div class="list_content">
-                                <i class="fas fa-angle-right feature-text"></i>
-                                <span class="feature-text">Đăng ký môn học</span>
-                            </div>
-                        </div>
-                        <div class="list_feature--member">
-                            <div class="list_content">
-                                <i class="fas fa-angle-right feature-text"></i>
-                                <span class="feature-text">Xem học phí</span>
-                            </div>
-                        </div>
-                        <div class="list_feature--member">
-                            <div class="list_content">
-                                <i class="fas fa-angle-right feature-text"></i>
-                                <span class="feature-text">Đóng học phí</span>
-                            </div>
-                        </div>
-                        <div class="list_feature--member">
-                            <div class="list_content">
-                                <i class="fas fa-angle-right feature-text"></i>
-                                <span class="feature-text">In phiếu nộp tiền</span>
-                            </div>
-                        </div>
-                        <div class="list_feature--member">
-                            <div class="list_content">
-                                <i class="fas fa-angle-right feature-text"></i>
-                                <span class="feature-text">Xem thời khóa biểu tuần</span>
-                            </div>
-                        </div>
-                        <div class="list_feature--member">
-                            <div class="list_content">
-                                <i class="fas fa-angle-right feature-text"></i>
-                                <span class="feature-text">Xem thời khóa biểu học kỳ</span>
-                            </div>
-                        </div>
-                        <div class="list_feature--member">
-                            <div class="list_content">
-                                <i class="fas fa-angle-right feature-text"></i>
-                                <span class="feature-text">Xem lịch thi</span>
-                            </div>
-                        </div>
-                        <div class="list_feature--member">
-                            <div class="list_content">
-                                <i class="fas fa-angle-right feature-text"></i>
-                                <span class="feature-text">Xem điểm</span>
-                            </div>
-                        </div>
-                        <div class="list_feature--member" onclick="location.href='/dat_phong'">
-                            <div class="list_content">
-                                <i class="fas fa-angle-right feature-text"></i>
-                                <span class="feature-text">Đăng ký mượn phòng học</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                {% endif %}
-            </div>
-    </div>
-</div>
 
-<div id="sub_footer">
-    <div class="sub_footer--container">
-        <div class="sub_footer--flex">
-            <div class="sub-footer--title">THỐNG KÊ TRUY CẬP</div>
-            <div class="sub-footer--list_flex">
-                <div class="content-in--sub__footer"><i class="fa fa-users icon-in--sub__footer"></i><span>Đang truy cập</span></div>
-                <div class="number-in--sub__footer">175</div>
-            </div>
-            <div class="sub-footer--list_flex">
-                <div class="content-in--sub__footer"><i class="fa-solid fa-user-graduate icon-in--sub__footer"></i><span>SV đăng nhập</span></div>
-                <div class="number-in--sub__footer">175</div>
-            </div>
-            <div class="sub-footer--list_flex">
-                <div class="content-in--sub__footer"><i class="fa-solid fa-user-tie icon-in--sub__footer"></i><span>GV đăng nhập</span></div>
-                <div class="number-in--sub__footer">0</div>
-            </div>
-        </div>
-    </div>
-</div>
-</div>
-
+{% block api %}
 <script>
     document.getElementById('select_floor').value= parseInt('{{ floor }}')
     document.getElementById('select-ca-hoc').value= parseInt('{{ ca }}')
@@ -332,8 +192,8 @@
         getCaHoc(parseInt('{{ ca }}'))
     }
 
-    let ds_phong_hoc = []
-    let phong_hoc = {}
+    var ds_phong_hoc = []
+    var phong_hoc = {}
     {% for p in list_phong_hoc %}
         phong_hoc = {
             id: {{ p.id }},
@@ -352,4 +212,5 @@
     }
 </script>
 <script src="{{ url_for('static', filename='js/selectFloor.js') }}"></script>
+{% endblock %}
 {% endblock %}
