@@ -88,5 +88,13 @@ def save_book_room():
 
 @login_required
 def xem_phieu_muon():
-    list_phieu_muon = dao.get_all_phieu_muon(current_user.id)
-    return render_template('coupon_view.html', list_phieu_muon=list_phieu_muon)
+    phieu_cho_duyet = dao.get_phieu_muon_theo_trang_thai(current_user.id, "DANG_CHO_DUYET")
+    phieu_cho_duyet = sorted(phieu_cho_duyet, key=lambda x: x[9], reverse=True)
+    phieu_tu_choi = dao.get_phieu_muon_theo_trang_thai(current_user.id, "TU_CHOI")
+    phieu_tu_choi = sorted(phieu_tu_choi, key=lambda x: x[9], reverse=True)
+    phieu_san_sang = dao.get_phieu_muon_theo_trang_thai(current_user.id, "SAN_SANG")
+    phieu_san_sang = sorted(phieu_san_sang, key=lambda x: x[9], reverse=True)
+    phieu_thanh_cong = dao.get_phieu_muon_theo_trang_thai(current_user.id, "THANH_CONG")
+    phieu_thanh_cong = sorted(phieu_thanh_cong, key=lambda x: x[9], reverse=True)
+    return render_template('coupon_view.html', phieu_cho_duyet=phieu_cho_duyet, phieu_tu_choi=phieu_tu_choi,
+                           phieu_san_sang=phieu_san_sang, phieu_thanh_cong=phieu_thanh_cong)
