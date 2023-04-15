@@ -97,5 +97,7 @@ def xem_phieu_muon():
     phieu_san_sang = sorted(phieu_san_sang, key=lambda x: x[9], reverse=True)
     phieu_thanh_cong = dao.get_phieu_muon_theo_trang_thai(current_user.id, "THANH_CONG")
     phieu_thanh_cong = sorted(phieu_thanh_cong, key=lambda x: x[9], reverse=True)
+    phieu_vi_pham = dao.get_phieu_muon_theo_trang_thai(current_user.id, "THAT_BAI")
+    phieu_vi_pham = sorted(phieu_vi_pham, key=lambda x: x[9], reverse=True)
     return render_template('coupon_view.html', phieu_cho_duyet=phieu_cho_duyet, phieu_tu_choi=phieu_tu_choi,
-                           phieu_san_sang=phieu_san_sang, phieu_thanh_cong=phieu_thanh_cong)
+                           phieu_san_sang=phieu_san_sang, phieu_thanh_cong=phieu_thanh_cong, phieu_vi_pham=phieu_vi_pham)

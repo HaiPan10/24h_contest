@@ -84,10 +84,11 @@ def get_phieu_muon_theo_trang_thai(ma_tai_khoan, trangthai):
     query = db.session.query(TaiKhoan.ho_ten, TaiKhoan.dai_dien_to_chuc, TaiKhoan.mssv, TaiKhoan.so_dien_thoai,
                              PhongHoc.ten_phong, CaHoc.gio_bat_dau, CaHoc.gio_ket_thuc,
                              PhieuMuonPhong.ngay_muon, PhieuMuonPhong.ly_do, PhieuMuonPhong.thoi_gian_dat,
-                             PhieuMuonPhong.id) \
+                             PhieuMuonPhong.id, Tag.name_tag) \
         .join(TaiKhoan, TaiKhoan.id.__eq__(PhieuMuonPhong.tai_khoan_id)) \
         .join(PhongHoc, PhongHoc.id.__eq__(PhieuMuonPhong.phong_hoc_id)) \
         .join(CaHoc, CaHoc.id.__eq__(PhieuMuonPhong.ca_id)) \
+        .join(Tag, Tag.id.__eq__(PhieuMuonPhong.tag_id)) \
         .filter(PhieuMuonPhong.tai_khoan_id.__eq__(ma_tai_khoan), PhieuMuonPhong.trang_thai.__eq__(trangthai))
     return query.all()
 

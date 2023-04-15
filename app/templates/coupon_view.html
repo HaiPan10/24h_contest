@@ -51,6 +51,10 @@
                                             <div class="inform-detail_title">Thời gian ghi nhận:</div>
                                             <div><input readonly value="{{ p[9] }}" class="detail-input" type="datetime-local"></div>
                                         </div>
+                                        <div class="inform-detail__col">
+                                            <div class="inform-detail_title">Hình thức mượn:</div>
+                                            <div><input readonly value="{{ p[11] }}" class="detail-input" type="text"></div>
+                                        </div>
                                     </div>
                                     <div class="coupon-detail__row">
                                         <div class="inform-detail__col">
@@ -126,6 +130,10 @@
                                         <div class="inform-detail__col">
                                             <div class="inform-detail_title">Thời gian ghi nhận:</div>
                                             <div><input readonly value="{{ p[9] }}" class="detail-input" type="datetime-local"></div>
+                                        </div>
+                                        <div class="inform-detail__col">
+                                            <div class="inform-detail_title">Hình thức mượn:</div>
+                                            <div><input readonly value="{{ p[11] }}" class="detail-input" type="text"></div>
                                         </div>
                                     </div>
                                     <div class="coupon-detail__row">
@@ -205,6 +213,10 @@
                                             <div class="inform-detail_title">Thời gian ghi nhận:</div>
                                             <div><input readonly value="{{ p[9] }}" class="detail-input" type="datetime-local"></div>
                                         </div>
+                                        <div class="inform-detail__col">
+                                            <div class="inform-detail_title">Hình thức mượn:</div>
+                                            <div><input readonly value="{{ p[11] }}" class="detail-input" type="text"></div>
+                                        </div>
                                     </div>
                                     <div class="coupon-detail__row">
                                         <div class="inform-detail__col">
@@ -281,6 +293,10 @@
                                             <div class="inform-detail_title">Thời gian ghi nhận:</div>
                                             <div><input readonly value="{{ p[9] }}" class="detail-input" type="datetime-local"></div>
                                         </div>
+                                        <div class="inform-detail__col">
+                                            <div class="inform-detail_title">Hình thức mượn:</div>
+                                            <div><input readonly value="{{ p[11] }}" class="detail-input" type="text"></div>
+                                        </div>
                                     </div>
                                     <div class="coupon-detail__row">
                                         <div class="inform-detail__col">
@@ -305,6 +321,81 @@
                                     <div class="coupon-detail__row flex-end">
                                         <div class="inform-detail__col btn_col">
                                             <button class="btn btn-coupon btn-green" id="btn-feedback_{{ p[0] }}">Phản hồi</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+        <div class="accordion" collapsible="true">
+            <div class="accordion__title">
+                <span>Vi phạm</span>
+                <svg width="17" height="17">
+                    <g fill-rule="nonzero" stroke="#0078C1" stroke-width="3" fill="none" stroke-linecap="square">
+                        <path d="M14.664 8.5H1.5M8 15.164V2"></path>
+                    </g>
+                </svg>
+            </div>
+            <div class="accordion__content">
+                <div class="coupon_wrapper">
+                    {% for p in phieu_vi_pham %}
+                    <div class="coupon-detail">
+                        <div class="coupon-title">MÃ PHIẾU MƯỢN <span class="important">#{{ p[10] }}</span> PHÒNG <span class="important">#{{ p[4] }}</span></div>
+                        <div class="coupon-row">
+                            <div class="coupon-col">
+                                <div class="user-inform">
+                                    <div class="coupon-detail__row">
+                                        <div class="inform-detail__col">
+                                            <div class="inform-detail_title">Họ tên người đặt phòng:</div>
+                                            <div><input readonly value="{{ p[0] }}" class="detail-input" type="text"></div>
+                                        </div>
+                                        <div class="inform-detail__col">
+                                            <div class="inform-detail_title">Tổ chức đại diện:</div>
+                                            <div><input readonly value="{{ p[1] }}" class="detail-input" type="text"></div>
+                                        </div>
+                                    </div>
+                                    <div class="coupon-detail__row">
+                                        <div class="inform-detail__col">
+                                            <div class="inform-detail_title">Số điện thoại: </div>
+                                            <div><input readonly value = '{{ p[3] }}' class="detail-input" type="text"></div>
+                                        </div>
+                                        <div class="inform-detail__col">
+                                            <div class="inform-detail_title">Mã số sinh viên: </div>
+                                            <div><input readonly value = '{{ p[2] }}' class="detail-input" type="text"></div>
+                                        </div>
+                                    </div>
+                                    <div class="coupon-detail__row">
+                                        <div class="inform-detail__col">
+                                            <div class="inform-detail_title">Thời gian ghi nhận:</div>
+                                            <div><input readonly value="{{ p[9] }}" class="detail-input" type="datetime-local"></div>
+                                        </div>
+                                        <div class="inform-detail__col">
+                                            <div class="inform-detail_title">Hình thức mượn:</div>
+                                            <div><input readonly value="{{ p[11] }}" class="detail-input" type="text"></div>
+                                        </div>
+                                    </div>
+                                    <div class="coupon-detail__row">
+                                        <div class="inform-detail__col">
+                                            <div class="inform-detail_title">Ngày nhận phòng: </div>
+                                            <div><input readonly value="{{ p[7] }}" class="detail-input" type="date"></div>
+                                        </div>
+                                        <div class="inform-detail__col">
+                                            <div class="inform-detail_title">Giờ bắt đầu: </div>
+                                            <div><input readonly value = '{{ p[5] }}' class="detail-input" type="time"></div>
+                                        </div>
+                                        <div class="inform-detail__col">
+                                            <div class="inform-detail_title">Giờ kết thúc: </div>
+                                            <div><input readonly value = '{{ p[6] }}' class="detail-input" type="time"></div>
+                                        </div>
+                                    </div>
+                                    <div class="coupon-detail__row ">
+                                        <div class="inform-detail__col full-width">
+                                           <div class="inform-detail_title">Lý do: </div>
+                                            <div><input readonly value = '{{ p[8] }}' class="detail-input full-width" type="text"></div>
                                         </div>
                                     </div>
                                 </div>
