@@ -106,6 +106,11 @@ class Day(BaseModel):
     lop_hoc_id = Column(Integer, ForeignKey(LopHoc.id), nullable=False)
 
 
+class Tag(BaseModel):
+    name_tag = Column(String(50), nullable=False)
+    phieu_muon_phong = relationship('PhieuMuonPhong', backref='tag', lazy=True)
+
+
 class PhieuMuonPhong(BaseModel):
     thoi_gian_dat = Column(DateTime)
     ngay_muon = Column(Date)
@@ -114,6 +119,7 @@ class PhieuMuonPhong(BaseModel):
     ca_id = Column(Integer, ForeignKey(CaHoc.id), nullable=False)
     phong_hoc_id = Column(Integer, ForeignKey(PhongHoc.id), nullable=False)
     trang_thai = Column(Enum(TrangThai))
+    tag_id = Column(Integer, ForeignKey(Tag.id), nullable=False)
 
 
 if __name__ == '__main__':
