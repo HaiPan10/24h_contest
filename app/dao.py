@@ -49,7 +49,8 @@ def save_room(request):
                                       phong_hoc_id=get_phong_hoc_by_name(request['ten_phong']).id,
                                       ngay_muon=datetime.strptime(request['ngay_muon'], "%Y-%m-%d"),
                                       thoi_gian_dat=datetime.now(),
-                                      trang_thai="DANG_CHO_DUYET")
+                                      trang_thai="DANG_CHO_DUYET",
+                                      tag_id=int(request['tag_id']))
     # print(phieu_muon_phong)
     
     db.session.add(phieu_muon_phong)
