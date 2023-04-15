@@ -723,6 +723,10 @@ body {
     padding-bottom: 2px;
 }
 
+.inform-detail_title span {
+    color: black;
+}
+
 .detail-input {
     padding: 4px;
     border-radius: 5px;
@@ -752,7 +756,7 @@ textarea {
     margin: 5px;
 }
 
-#btn-save_order {
+.btn-save_order {
     background-color: var(--primary-background__color);
     color: white;
     border:white;
@@ -865,4 +869,11 @@ textarea {
 .btn-green {
     background-color: green;
     color: white;
+}
+
+.detail-input_coupon {
+    padding: 4px;
+    border-radius: 5px;
+    border:
+    color: var(--primary-background__color);
 }
