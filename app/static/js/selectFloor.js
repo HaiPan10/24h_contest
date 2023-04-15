@@ -40,7 +40,7 @@ function saveBookRoom(userID, caHocID, form){
           'ten_phong' : document.getElementById('chosen_room').value,
           'ngay_muon' : form['ngay_dat_phong'].value,
           'ly_do' : form['purpose'].value,
-          'ca_id' : form['tag_id'].value
+          'tag_id' : form['tag_id'].value
       }),
       headers : {
           'Content-Type' : 'application/json'
