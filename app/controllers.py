@@ -61,8 +61,9 @@ def book_room():
                                 gio_ket_thuc=ca_hoc.gio_ket_thuc, thu=day_of_week)
     phieu_muon_phong = dao.get_phieu_muon(so_lau=floor, gio_bat_dau=ca_hoc.gio_bat_dau,
                                 gio_ket_thuc=ca_hoc.gio_ket_thuc, ngay_muon=date_book)
+    tag_list = dao.get_tag()
     return render_template('book_room.html', list_ca_hoc=list_ca_hoc, list_phong_hoc=list_phong_hoc,
-                           max_phong_hoc=len(list_phong_hoc), half_phong_hoc=half_phong_hoc,
+                           max_phong_hoc=len(list_phong_hoc), half_phong_hoc=half_phong_hoc, tag_list=tag_list,
                            floor=floor, ca=ca, ngay_dat=date_book, lich_hoc=lich_hoc, phieu_muon_phong=phieu_muon_phong)
 
 

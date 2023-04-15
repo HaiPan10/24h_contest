@@ -694,9 +694,7 @@ body {
 }
 
 #detail-name,
-#detail-organization,
-#detail-phone_number,
-#detail-room_chosen {
+#detail-organization {
     width: 50%;
 }
 
@@ -712,7 +710,10 @@ body {
 
 #detail-date_order,
 #detail-time_start,
-#detail-time_end {
+#detail-time_end,
+#detail-phone_number,
+#detail-room_chosen,
+#tag-room_chosen {
     width: 30%;
 }
 
@@ -840,4 +841,28 @@ textarea {
 
 .full-width {
     width: 99%;
+}
+
+.btn-coupon{
+    cursor: pointer;
+    background-color: red;
+    color: white;
+    padding: 0px 25px;
+}
+
+.btn_col {
+    padding: 10px 0px;
+}
+
+.btn-coupon:hover {
+    cursor: pointer;
+    background-color: #5e0810;
+    color: white;
+    padding: 0px 25px;
+
+}
+
+.btn-green {
+    background-color: red;
+    color: white;
 }

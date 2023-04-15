@@ -142,6 +142,14 @@
                                 <div class="inform-detail_title">Phòng đăng ký: </div>
                                 <div><input name="phong_dang_ky" readonly class="detail-input" id="chosen_room" name="chosen_room" type="text"></div>
                             </div>
+                            <div class="inform-detail__col" id="tag-room_chosen">
+                                <div class="inform-detail_title">Hình thức mượn: </div>
+                                <select class="detail-input" id="tag_id" name="tag_id">
+                                    {% for tag in tag_list %}
+                                    <option value="{{ tag.id }}">{{ tag.name_tag }}</option>
+                                    {% endfor %}
+                                </select>
+                            </div>
                         </div>
 
                         <div class="inform-detail__row">

@@ -1,6 +1,6 @@
 from datetime import datetime
 from sqlalchemy import and_, or_
-from app.models import PhongHoc, CaHoc, TaiKhoan, LopHoc, PhieuMuonPhong
+from app.models import PhongHoc, CaHoc, TaiKhoan, LopHoc, PhieuMuonPhong, Tag
 from app import db
 
 
@@ -91,3 +91,5 @@ def get_phieu_muon_theo_trang_thai(ma_tai_khoan, trangthai):
     return query.all()
 
 
+def get_tag():
+    return Tag.query.all()
