@@ -24,9 +24,8 @@ class GiangVien(BaseModel):
 
 
 class TinhTrang(TinhTrangEnum):
-    DA_DAT = 1
+    SU_DUNG_DUOC = 1
     BAO_TRI = 2
-    CON_TRONG = 3
 
 
 class PhongHoc(BaseModel):
@@ -90,6 +89,8 @@ class TrangThai(TrangThaiEnum):
     TU_CHOI = 2
     SAN_SANG = 3
     THANH_CONG = 4
+    THAT_BAI = 5
+    DA_HUY = 6
 
 
 class LopHoc(BaseModel):
@@ -117,9 +118,9 @@ class PhieuMuonPhong(BaseModel):
 
 if __name__ == '__main__':
     with app.app_context():
-        pass
-        # db.drop_all()
-        # db.create_all()
+        # pass
+        db.drop_all()
+        db.create_all()
         # name = 'Admin'
         # username = 'admin'
         # password = str(hashlib.md5('1'.encode('utf-8')).hexdigest())
