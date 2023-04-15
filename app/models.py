@@ -110,6 +110,9 @@ class Tag(BaseModel):
     name_tag = Column(String(50), nullable=False)
     phieu_muon_phong = relationship('PhieuMuonPhong', backref='tag', lazy=True)
 
+    def __str__(self) -> str:
+        return self.name_tag
+
 
 class PhieuMuonPhong(BaseModel):
     thoi_gian_dat = Column(DateTime)
